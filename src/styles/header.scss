@@ -1,0 +1,11 @@
+$header-color: #f1f5f9;
+
+#header-div {
+  background-color: $header-color;
+  padding: 20px 40px;
+
+  .upper-header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
