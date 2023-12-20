@@ -1,6 +1,14 @@
 @use "/src/styles/header.scss";
+@use "/src/styles/main.scss";
+@use "/src/styles/loginModal.scss";
 
-$body-color: #f8fafc;
+$body-color: #f1f5f9;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   background-color: $body-color;
