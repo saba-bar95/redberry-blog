@@ -5,16 +5,11 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  z-index: 1;
-  left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
 
   .modal-content {
-    border: none;
-    outline: none;
     display: flex;
     flex-direction: column;
     background-color: #fefefe;
@@ -42,7 +37,6 @@
         text-align: center;
         margin-bottom: 30px;
         line-height: 32px;
-        font-size: 2em;
       }
 
       label {
@@ -83,15 +77,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       gap: 15px;
       margin-bottom: 20px;
 
       h1 {
         font-size: 1.3em;
         color: #1a1a1f;
-        font-weight: 700;
-        line-height: 27px;
       }
     }
 

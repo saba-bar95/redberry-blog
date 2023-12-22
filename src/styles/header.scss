@@ -1,23 +1,14 @@
 #header-div {
-  flex-item {
+  .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  .upper-header {
-    @extend flex-item;
     padding: 24px 100px;
     background-color: #f8fafc;
 
-    img {
-      height: 24px;
-    }
-
     button {
       font-family: "FiraGO";
-      font-weight: 500;
-      font-size: 14px;
+      font-size: 0.9em;
       line-height: 20px;
       color: #f8fafc;
       padding: 10px 20px;
@@ -27,24 +18,6 @@
       &:hover {
         cursor: pointer;
       }
-    }
-  }
-
-  .lower-header {
-    @extend flex-item;
-    background-image: linear-gradient(to right, #f1f5f9, #e2e8f0);
-    padding: 70px 90px 0px 120px;
-
-    h1 {
-      font-size: 4.8em;
-      color: #1a1a1f;
-      font-family: "FiraGo";
-      line-height: 72px;
-      font-weight: 700;
-    }
-
-    img {
-      height: 200px;
     }
   }
 }

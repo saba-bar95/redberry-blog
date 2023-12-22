@@ -1,9 +1,9 @@
 export default function displayCategories(data) {
-  const mainDiv = document.querySelector("#main-div");
+  const mainContent = document.querySelector(".main-content");
 
   const categoriesContainer = document.createElement("div");
   categoriesContainer.classList.add("categories-container");
-  mainDiv.appendChild(categoriesContainer);
+  mainContent.appendChild(categoriesContainer);
 
   data.data.forEach((el) => {
     const category = document.createElement("div");

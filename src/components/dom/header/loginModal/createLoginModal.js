@@ -82,7 +82,9 @@ export default function createLoginModal() {
     if (e.target.id === "modal-container") removeLoginModal(e);
   });
 
-  xImg.addEventListener("click", removeLoginModal);
+  xImg.addEventListener("click", (e) => {
+    removeLoginModal(e);
+  });
 
   entryBtn.addEventListener("click", changeModalUI);
 
