@@ -1,4 +1,9 @@
 #modal-container {
+  font-family: "FiraGO";
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -6,14 +11,103 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
 
   .modal-content {
+    border: none;
+    outline: none;
+    display: flex;
+    flex-direction: column;
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    padding: 20px 30px 35px 30px;
+    width: 480px;
+    transform: translateY(-50%);
+    border-radius: 12px;
+
+    .x-img {
+      align-self: end;
+      height: 12px;
+      opacity: 0.6;
+      &:hover {
+        cursor: pointer;
+        scale: 1.1;
+        transition-duration: 0.5s;
+      }
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        line-height: 32px;
+        font-size: 2em;
+      }
+
+      label {
+        font-size: 0.9em;
+        font-weight: 600;
+        line-height: 20px;
+        margin-bottom: 7px;
+      }
+
+      input {
+        font-family: inherit;
+        font-size: 0.9em;
+        border: 2px solid #000000;
+        outline: none;
+        background-color: #f7f7ff;
+        border-radius: 12px;
+        padding: 10px;
+        margin-bottom: 25px;
+        &:focus {
+          border-color: #5d37f3;
+        }
+      }
+    }
+
+    .error-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+
+      p {
+        font-size: 0.9em;
+        color: #ff0000;
+      }
+    }
+
+    .success-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+
+      h1 {
+        font-size: 1.3em;
+        color: #1a1a1f;
+        font-weight: 700;
+        line-height: 27px;
+      }
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 0.9em;
+      padding: 12px;
+      border: none;
+      background-color: #5d37f3;
+      border-radius: 8px;
+      color: #ffffff;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }

@@ -1,12 +1,3 @@
-@font-face {
-  font-family: "FiraGO";
-  src: url("/src/assets/fonts/FiraGO/FiraGO-Regular.otf");
-}
-
-.hidden {
-  display: none;
-}
-
 #main-div {
   margin: 70px 0;
   display: flex;
@@ -25,7 +16,6 @@
       align-items: center;
       padding: 4px 8px;
       border-radius: 30px;
-
       &:hover {
         cursor: pointer;
         scale: 1.05;

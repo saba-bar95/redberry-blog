@@ -1,4 +1,4 @@
-export default async function checkLogin(email) {
+export default async function checkEmail(email) {
   try {
     const response = await fetch(
       "https://api.blog.redberryinternship.ge/api/login",
@@ -14,10 +14,8 @@ export default async function checkLogin(email) {
       }
     );
     if (response.status === 204) {
-      console.log("Email exists.");
       return true;
     } else if (response.status === 422) {
-      console.log("Email does not exist.");
       return false;
     }
   } catch (error) {

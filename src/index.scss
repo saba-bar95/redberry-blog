@@ -2,12 +2,21 @@
 @use "/src/styles/main.scss";
 @use "/src/styles/loginModal.scss";
 
+@font-face {
+  font-family: "FiraGO";
+  src: url("/src/assets/fonts/FiraGO/FiraGO-Regular.otf");
+}
+
 $body-color: #f1f5f9;
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.hidden {
+  display: none !important;
 }
 
 body {

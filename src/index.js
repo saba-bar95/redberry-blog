@@ -3,7 +3,6 @@ import createHeaderDiv from "./components/dom/header/headerDiv";
 import createMainDiv from "./components/dom/main/mainDiv";
 import fetchCategories from "./components/logic/fetchCategories";
 import displayCategories from "./components/dom/main/displayCategories";
-import checkLogin from "./components/logic/checkLogin";
 
 const url = "https://api.blog.redberryinternship.ge/api";
 const token =
@@ -20,7 +19,3 @@ body.appendChild(createMainDiv());
 fetchCategories(url).then((data) => {
   displayCategories(data);
 });
-
-// checkLogin("gigagiorgadze@redberry.ge").then((data) => {
-//   console.log(data);
-// });

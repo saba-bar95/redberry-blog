@@ -1,15 +1,10 @@
-@font-face {
-  font-family: "FiraGO";
-  src: url("/src/assets/fonts/FiraGO/FiraGO-Regular.otf");
-}
-
-flex-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 #header-div {
+  flex-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .upper-header {
     @extend flex-item;
     padding: 24px 100px;
