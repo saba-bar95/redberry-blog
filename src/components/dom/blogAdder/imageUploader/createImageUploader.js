@@ -1,9 +1,8 @@
 import folderAdderImg from "/src/assets/images/folder-add.png";
 import removeImgPng from "/src/assets/images/remove.png";
 import updateImageUploader from "./updateImageUploader";
-import displayMainDiv from "../../main/displayMainDiv";
 
-export default function createImageUploader(blogInfo, backArrow) {
+export default function createImageUploader(blogInfo) {
   const imageUploaderContainer = document.createElement("div");
   imageUploaderContainer.classList.add("img-uploader-container");
 
@@ -79,23 +78,6 @@ export default function createImageUploader(blogInfo, backArrow) {
   });
 
   removeImg.addEventListener("click", (e) => {
-    updateImageUploader(
-      e.target,
-      blogInfo,
-      imageUploader,
-      imageTexts,
-      imageInputLabel,
-      imageTextSpan,
-      folderAdder,
-      removeImg,
-      imageInput,
-      false
-    );
-  });
-
-  backArrow.addEventListener("click", function (e) {
-    displayMainDiv();
-
     updateImageUploader(
       e.target,
       blogInfo,

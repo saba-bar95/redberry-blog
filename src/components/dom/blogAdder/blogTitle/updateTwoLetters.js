@@ -1,5 +1,5 @@
-export default function updateGeorgianVal(valid) {
-  const div = document.querySelector(".validation-container--3");
+export default function updateTwoLetters(valid) {
+  const div = document.querySelector(".title-validation-container");
 
   if (valid === "init") {
     div.querySelector("span").style.backgroundColor = "#85858d";
@@ -10,10 +10,12 @@ export default function updateGeorgianVal(valid) {
   if (valid) {
     div.querySelector("span").style.backgroundColor = "green";
     div.querySelector("li").style.color = "green";
+    return true;
   }
 
   if (!valid) {
     div.querySelector("span").style.backgroundColor = "red";
     div.querySelector("li").style.color = "red";
+    return false;
   }
 }

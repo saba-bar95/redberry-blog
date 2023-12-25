@@ -7,7 +7,6 @@ export default function updateLoginModalUI(data, div) {
   const errorContainer = div.querySelector(".error-container");
   const entryBtn = div.querySelector(".entry-btn");
   const successBtn = div.querySelector(".success-btn");
-  const xImg = div.querySelector(".x-img");
 
   if (data) {
     inputContainer.classList.add("hidden");
@@ -15,13 +14,11 @@ export default function updateLoginModalUI(data, div) {
     entryBtn.classList.add("hidden");
     successBtn.classList.remove("hidden");
     errorContainer.classList.add("hidden");
-    xImg.classList.add("hidden");
 
     successBtn.addEventListener("click", function (e) {
       removeLoginModal(e);
       document.querySelector(".entry-button").classList.add("hidden");
       document.querySelector(".blog-adder-button").classList.remove("hidden");
-      localStorage.setItem("login", JSON.stringify(true));
     });
   }
 

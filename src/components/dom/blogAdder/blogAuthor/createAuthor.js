@@ -13,14 +13,14 @@ export default function createAuthor(blogInfo) {
   const authorContainer = document.createElement("div");
   authorContainer.classList.add("author-container");
 
-  const authorText = document.createElement("label");
-  authorText.textContent = "ავტორი";
-  authorText.setAttribute("for", "author-input");
-  authorContainer.appendChild(authorText);
+  const authorLabel = document.createElement("label");
+  authorLabel.textContent = "ავტორი";
+  authorLabel.setAttribute("for", "author-input");
+  authorContainer.appendChild(authorLabel);
 
-  const authorTextSpan = document.createElement("span");
-  authorTextSpan.textContent = "*";
-  authorText.appendChild(authorTextSpan);
+  const authorLabelSpan = document.createElement("span");
+  authorLabelSpan.textContent = "*";
+  authorLabel.appendChild(authorLabelSpan);
 
   const authorInput = document.createElement("input");
   authorInput.classList.add("author-input");
@@ -50,6 +50,10 @@ export default function createAuthor(blogInfo) {
     validationContainer.appendChild(validationText);
   });
 
+  authorInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") e.preventDefault();
+  });
+
   authorInput.addEventListener("input", function () {
     if (this.value.charAt(0) === " ") {
       alert("Input should not start with a space");
@@ -59,7 +63,7 @@ export default function createAuthor(blogInfo) {
     validateAuthor(this);
   });
 
-  authorInput.addEventListener("blur", function () {
+  authorInput.addEventListener("blur", function (e) {
     if (this.value.length === 0) {
       this.style.border = "1px solid #e4e3eb";
       updateGeorgianVal("init");

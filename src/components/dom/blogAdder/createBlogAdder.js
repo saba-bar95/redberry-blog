@@ -3,6 +3,7 @@ import validateForm from "../../logic/blogAdder/validateForm";
 import createImageUploader from "./imageUploader/createImageUploader";
 import createAuthor from "./blogAuthor/createAuthor";
 import createTitle from "./blogTitle/createTitle";
+import displayMainDiv from "/src/components/dom/main/displayMainDiv.js";
 
 export default function createBlogAdder(status, blogInfo) {
   const blogAdder = document.createElement("div");
@@ -28,7 +29,7 @@ export default function createBlogAdder(status, blogInfo) {
   blogAdderForm.setAttribute("id", "blog-form");
   blogAdderContent.appendChild(blogAdderForm);
 
-  blogAdderForm.appendChild(createImageUploader(blogInfo, backArrow));
+  blogAdderForm.appendChild(createImageUploader(blogInfo));
 
   const authorTitleContainer = document.createElement("div");
   authorTitleContainer.classList.add("author-title-container");
@@ -41,6 +42,8 @@ export default function createBlogAdder(status, blogInfo) {
   addBlogBtn.textContent = "გამოქვეყნება";
   addBlogBtn.classList.add("add-blog-btn");
   blogAdderForm.appendChild(addBlogBtn);
+
+  backArrow.addEventListener("click", displayMainDiv);
 
   addBlogBtn.addEventListener("click", function (e) {
     e.preventDefault();

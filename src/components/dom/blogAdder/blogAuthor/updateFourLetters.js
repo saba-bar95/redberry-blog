@@ -10,12 +10,10 @@ export default function updateFourLetters(valid) {
   if (valid) {
     div.querySelector("span").style.backgroundColor = "green";
     div.querySelector("li").style.color = "green";
-    return true;
   }
 
   if (!valid) {
     div.querySelector("span").style.backgroundColor = "red";
     div.querySelector("li").style.color = "red";
-    return false;
   }
 }

@@ -7,9 +7,9 @@ import updateGeorgianVal from "../../../../dom/blogAdder/blogAuthor/updateGeorgi
 
 export default function validateAuthor(input) {
   if (input.value.length === 0) {
-    updateGeorgianVal(false);
-    updateTwoWordsVal(false);
     updateFourLetters(false);
+    updateTwoWordsVal(false);
+    updateGeorgianVal(false);
     return;
   }
 
@@ -17,12 +17,10 @@ export default function validateAuthor(input) {
   updateTwoWordsVal(validateTwoWords(input.value));
   updateGeorgianVal(validateGeorgianAlph(input.value));
 
-  console.log(updateFourLetters(validateFourLetters(input.value)));
-
   if (
-    updateFourLetters(validateFourLetters(input.value)) &&
-    updateTwoWordsVal(validateTwoWords(input.value)) &&
-    updateGeorgianVal(validateGeorgianAlph(input.value))
+    validateFourLetters(input.value) &&
+    validateTwoWords(input.value) &&
+    validateGeorgianAlph(input.value)
   ) {
     input.style.border = "1px solid green";
   } else input.style.border = "1px solid red";

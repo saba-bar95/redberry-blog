@@ -98,21 +98,35 @@ export default function createLoginModal() {
     if (loginUser(emailInput)) {
       loginUser(emailInput).then((data) => {
         updateLoginModalUI(data, modalContainer);
+        localStorage.setItem("login", JSON.stringify(true));
       });
     }
   }
 
   removeLoginModal = function (e) {
+    if (
+      e.target.classList.contains("x-img") &&
+      entryBtn.classList.contains("hidden")
+    ) {
+      normalBody();
+      entryBtn.classList.add("hidden");
+      document.querySelector(".entry-button").classList.add("hidden");
+      document.querySelector(".blog-adder-button").classList.remove("hidden");
+    }
+
     if (!entryBtn.classList.contains("hidden")) {
-      modalContainer.remove();
-      body.style.overflow = "visible";
+      normalBody();
     }
 
     if (e.target.classList.contains("success-btn")) {
-      modalContainer.remove();
-      body.style.overflow = "visible";
+      normalBody();
     }
   };
+
+  function normalBody() {
+    modalContainer.remove();
+    body.style.overflow = "visible";
+  }
 }
 
 export { removeLoginModal };

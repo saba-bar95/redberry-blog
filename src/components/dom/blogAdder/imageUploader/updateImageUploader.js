@@ -37,16 +37,6 @@ export default function updateImageUploader(
     localStorage.setItem("blog-info", JSON.stringify(blogInfo));
   }
 
-  if (e.classList.contains("back-arrow")) {
-    noImage();
-
-    const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
-    for (let [key, value] of Object.entries(blogInfo)) {
-      blogInfo[key] = null;
-    }
-    localStorage.setItem("blog-info", JSON.stringify(blogInfo));
-  }
-
   function image() {
     imageUploader.style.padding = "20px";
     imageTexts.style.justifyContent = "space-between";
