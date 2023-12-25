@@ -2,7 +2,7 @@ import "/src/index.scss";
 import createHeader from "./components/dom/header/createHeader";
 import createMain from "./components/dom/main/createMain";
 import createBlogAdder from "./components/dom/blogAdder/createBlogAdder";
-import fetchCategories from "./components/logic/fetchCategories";
+import fetchCategories from "./components/logic/categories/fetchCategories";
 import createCategories from "./components/dom/main/createCategories";
 
 const body = document.querySelector("body");

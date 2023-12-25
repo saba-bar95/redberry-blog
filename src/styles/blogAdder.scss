@@ -12,7 +12,7 @@
   }
 
   .blog-adder-content {
-    padding: 0px 400px;
+    padding: 0px 575px;
 
     h1 {
       font-size: 2.3em;
@@ -27,7 +27,7 @@
       flex-direction: column;
       gap: 50px;
 
-      .img-input-container {
+      .img-uploader-container {
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -64,7 +64,58 @@
         }
       }
 
-      button {
+      .author-title-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+
+        .author-container,
+        .title-container {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          p {
+            display: flex;
+            gap: 5px;
+            font-size: 0.9em;
+            color: #1a1a1f;
+            font-weight: 600;
+          }
+
+          input {
+            width: 100%;
+            padding: 15px 10px;
+            font-family: inherit;
+            border-radius: 12px;
+            outline: none;
+            border: 1px solid #e4e3eb;
+            color: #85858d;
+          }
+
+          .validation-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+
+          .validation-before {
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            display: block;
+            background-color: #85858d;
+          }
+
+          li {
+            list-style-type: none;
+            color: #85858d;
+          }
+        }
+      }
+
+      .add-blog-btn {
         align-self: start;
       }
     }

@@ -90,7 +90,7 @@ export default function createLoginModal() {
 
   emailInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      updateLoginModalUI();
+      updateLoginModal();
     }
   });
 
