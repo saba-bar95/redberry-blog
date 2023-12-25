@@ -1,6 +1,7 @@
 @use "/src/styles/header.scss";
 @use "/src/styles/main.scss";
 @use "/src/styles/loginModal.scss";
+@use "/src/styles/blogAdder.scss";
 
 @font-face {
   font-family: "FiraGO";
@@ -21,4 +22,5 @@ $body-color: #f1f5f9;
 
 body {
   background-color: $body-color;
+  min-height: 100vh;
 }

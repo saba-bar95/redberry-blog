@@ -1,8 +1,9 @@
 import blogLogoImg from "/src/assets/images/blog-logo.png";
 
-export default function createMainDiv() {
+export default function createMain(status) {
   const main = document.createElement("div");
   main.setAttribute("id", "main-div");
+  if (status) main.classList.add("hidden");
 
   const mainContent = document.createElement("div");
   mainContent.classList.add("main-content");

@@ -1,0 +1,72 @@
+#blog-adder {
+  font-family: "FiraGO";
+  padding: 50px 70px 250px 70px;
+  border-top: 1px solid #e4e3eb;
+  position: relative;
+
+  .back-arrow {
+    position: absolute;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .blog-adder-content {
+    padding: 0px 400px;
+
+    h1 {
+      font-size: 2.3em;
+      color: #1a1a1f;
+      line-height: 40px;
+      font-weight: 700;
+      margin-bottom: 60px;
+    }
+
+    .blog-form {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+
+      .img-input-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .image-uploader {
+          width: 600px;
+          background-color: #e5e7eb;
+          border: 1.5px dashed #85858d;
+          border-radius: 12px;
+          display: flex;
+          flex-direction: column;
+          padding: 80px 100px;
+          gap: 30px;
+
+          img {
+            align-self: center;
+          }
+
+          .image-texts {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+
+            label {
+              text-decoration: underline;
+              cursor: pointer;
+              font-weight: 700;
+            }
+
+            img {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      button {
+        align-self: start;
+      }
+    }
+  }
+}

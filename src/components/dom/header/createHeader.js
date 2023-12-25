@@ -1,7 +1,8 @@
 import redberryLogoImg from "/src/assets/images/redberry-logo.png";
 import createLoginModal from "./loginModal/createLoginModal";
+import displayBlogAdder from "../blogAdder/displayBlogAdder";
 
-export default function createHeaderDiv(loginStatus) {
+export default function createHeader(status) {
   const header = document.createElement("div");
   header.setAttribute("id", "header-div");
 
@@ -23,12 +24,12 @@ export default function createHeaderDiv(loginStatus) {
   blogAdderBtn.classList.add("blog-adder-button");
   headerContent.appendChild(blogAdderBtn);
 
-  if (loginStatus) entryBtn.classList.add("hidden");
-  if (!loginStatus) blogAdderBtn.classList.add("hidden");
+  if (status) entryBtn.classList.add("hidden");
+  if (!status) blogAdderBtn.classList.add("hidden");
 
   entryBtn.addEventListener("click", createLoginModal);
 
-  // blogAdderBtn.addEventListener("click", displayBlogAdderModal);
+  blogAdderBtn.addEventListener("click", displayBlogAdder);
 
   return header;
 }

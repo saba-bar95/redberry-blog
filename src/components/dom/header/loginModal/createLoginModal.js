@@ -2,7 +2,7 @@ import xSvg from "/src/assets/images/x-icon.svg";
 import redCircleImg from "/src/assets/images/info-circle.png";
 import greenSuccessImg from "/src/assets/images/success-circle.png";
 import loginUser from "../../../logic/loginUser/loginUser";
-import updateLoginModal from "./updateLoginModal";
+import updateLoginModalUI from "./updateLoginModalUI";
 
 let removeLoginModal;
 
@@ -86,18 +86,18 @@ export default function createLoginModal() {
     removeLoginModal(e);
   });
 
-  entryBtn.addEventListener("click", changeModalUI);
+  entryBtn.addEventListener("click", updateLoginModal);
 
   emailInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      changeModalUI();
+      updateLoginModalUI();
     }
   });
 
-  function changeModalUI() {
+  function updateLoginModal() {
     if (loginUser(emailInput)) {
       loginUser(emailInput).then((data) => {
-        updateLoginModal(data, modalContainer);
+        updateLoginModalUI(data, modalContainer);
       });
     }
   }

@@ -1,6 +1,6 @@
 import { removeLoginModal } from "./createLoginModal";
 
-export default function updateLoginModal(data, div) {
+export default function updateLoginModalUI(data, div) {
   const inputContainer = div.querySelector(".input-container");
   const emailInput = div.querySelector("input");
   const successContainer = div.querySelector(".success-container");

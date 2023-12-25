@@ -1,4 +1,4 @@
-export default function displayCategories(data) {
+export default function createCategories(data) {
   const mainContent = document.querySelector(".main-content");
 
   const categoriesContainer = document.createElement("div");
