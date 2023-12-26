@@ -1,6 +1,4 @@
-export default function updateTwoLetters(valid) {
-  const div = document.querySelector(".title-validation-container");
-
+export default function updateTwoLetters(valid, div) {
   if (valid === "init") {
     div.querySelector("span").style.backgroundColor = "#85858d";
     div.querySelector("li").style.color = "#85858d";

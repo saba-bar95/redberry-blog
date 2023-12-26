@@ -1,6 +1,4 @@
-export default function updateFourLetters(valid) {
-  const div = document.querySelector(".validation-container--1");
-
+export default function updateFourLetters(valid, div) {
   if (valid === "init") {
     div.querySelector("span").style.backgroundColor = "#85858d";
     div.querySelector("li").style.color = "#85858d";

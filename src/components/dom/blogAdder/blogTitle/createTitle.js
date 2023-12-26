@@ -1,9 +1,10 @@
 import validateTitle from "../../../logic/blogAdder/validations/title/validateTitle";
 import updateTwoLetters from "./updateTwoLetters";
 
-export default function createTitle(blogInfo) {
-  const validations = ["მინიმუმ 2 სიმბოლო"];
+const validations = ["მინიმუმ 2 სიმბოლო"];
+let validationContainer;
 
+export default function createTitle(blogInfo) {
   const titleContainer = document.createElement("div");
   titleContainer.classList.add("title-container");
 
@@ -27,11 +28,8 @@ export default function createTitle(blogInfo) {
   titleContainer.appendChild(validationTexts);
 
   validations.forEach((el) => {
-    const validationContainer = document.createElement("div");
-    validationContainer.classList.add(
-      "validation-container",
-      "title-validation-container"
-    );
+    validationContainer = document.createElement("div");
+    validationContainer.classList.add("validation-container");
     validationTexts.appendChild(validationContainer);
 
     const validationBefore = document.createElement("span");
@@ -43,23 +41,28 @@ export default function createTitle(blogInfo) {
     validationContainer.appendChild(validationText);
   });
 
+  if (blogInfo && blogInfo.title) {
+    titleInput.value = blogInfo.title;
+    validateTitle(titleInput, validationContainer);
+  }
+
+  titleInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") e.preventDefault();
+  });
+
   titleInput.addEventListener("input", function () {
     if (this.value.charAt(0) === " ") {
       alert("Input should not start with a space");
       this.value = "";
       return;
     }
-    validateTitle(this);
-  });
-
-  titleInput.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") e.preventDefault();
+    validateTitle(this, validationContainer);
   });
 
   titleInput.addEventListener("blur", function () {
     if (this.value.length === 0) {
       this.style.border = "1px solid #e4e3eb";
-      updateTwoLetters("init");
+      updateTwoLetters("init", validationContainer);
     }
   });
 

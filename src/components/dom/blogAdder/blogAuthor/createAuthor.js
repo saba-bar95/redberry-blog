@@ -3,13 +3,14 @@ import updateFourLetters from "./updateFourLetters";
 import updateTwoWordsVal from "./updateTwoWordsVal";
 import updateGeorgianVal from "./updateGeorgianVal";
 
-export default function createAuthor(blogInfo) {
-  const validations = [
-    "მინიმუმ 4 სიმბოლო",
-    "მინიმუმ 2 სიტყვა",
-    "მხოლოდ ქართული სიმბოლოები",
-  ];
+const validations = [
+  "მინიმუმ 4 სიმბოლო",
+  "მინიმუმ 2 სიტყვა",
+  "მხოლოდ ქართული სიმბოლოები",
+];
+const validationArr = [];
 
+export default function createAuthor(blogInfo) {
   const authorContainer = document.createElement("div");
   authorContainer.classList.add("author-container");
 
@@ -32,14 +33,11 @@ export default function createAuthor(blogInfo) {
   validationTexts.classList.add("validation-texts");
   authorContainer.appendChild(validationTexts);
 
-  validations.forEach((el, i) => {
-    i++;
+  validations.forEach((el) => {
     const validationContainer = document.createElement("div");
-    validationContainer.classList.add(
-      "validation-container",
-      `validation-container--${i}`
-    );
+    validationContainer.classList.add("validation-container");
     validationTexts.appendChild(validationContainer);
+    validationArr.push(validationContainer);
 
     const validationBefore = document.createElement("span");
     validationBefore.classList.add("validation-before");
@@ -49,6 +47,11 @@ export default function createAuthor(blogInfo) {
     validationText.textContent = el;
     validationContainer.appendChild(validationText);
   });
+
+  if (blogInfo && blogInfo.author) {
+    authorInput.value = blogInfo.author;
+    validateAuthor(authorInput, validationArr);
+  }
 
   authorInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") e.preventDefault();
@@ -60,15 +63,15 @@ export default function createAuthor(blogInfo) {
       this.value = "";
       return;
     }
-    validateAuthor(this);
+    validateAuthor(this, validationArr);
   });
 
-  authorInput.addEventListener("blur", function (e) {
+  authorInput.addEventListener("blur", function () {
     if (this.value.length === 0) {
       this.style.border = "1px solid #e4e3eb";
-      updateGeorgianVal("init");
-      updateTwoWordsVal("init");
-      updateFourLetters("init");
+      updateFourLetters("init", validationArr[0]);
+      updateGeorgianVal("init", validationArr[1]);
+      updateTwoWordsVal("init", validationArr[2]);
     }
   });
 

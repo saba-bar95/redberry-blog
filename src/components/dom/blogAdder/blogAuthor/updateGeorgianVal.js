@@ -1,6 +1,4 @@
-export default function updateGeorgianVal(valid) {
-  const div = document.querySelector(".validation-container--3");
-
+export default function updateGeorgianVal(valid, div) {
   if (valid === "init") {
     div.querySelector("span").style.backgroundColor = "#85858d";
     div.querySelector("li").style.color = "#85858d";

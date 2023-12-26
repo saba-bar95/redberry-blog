@@ -5,23 +5,31 @@ import updateFourLetters from "../../../../dom/blogAdder/blogAuthor/updateFourLe
 import updateTwoWordsVal from "../../../../dom/blogAdder/blogAuthor/updateTwoWordsVal";
 import updateGeorgianVal from "../../../../dom/blogAdder/blogAuthor/updateGeorgianVal";
 
-export default function validateAuthor(input) {
-  if (input.value.length === 0) {
-    updateFourLetters(false);
-    updateTwoWordsVal(false);
-    updateGeorgianVal(false);
+export default function validateAuthor(input, arr) {
+  const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+  const value = input.value;
+
+  if (value.length === 0) {
+    updateFourLetters(false, arr[0]);
+    updateTwoWordsVal(false, arr[1]);
+    updateGeorgianVal(false, arr[2]);
+    blogInfo.author = value;
+    localStorage.setItem("blog-info", JSON.stringify(blogInfo));
     return;
   }
 
-  updateFourLetters(validateFourLetters(input.value));
-  updateTwoWordsVal(validateTwoWords(input.value));
-  updateGeorgianVal(validateGeorgianAlph(input.value));
+  updateFourLetters(validateFourLetters(value), arr[0]);
+  updateTwoWordsVal(validateTwoWords(value), arr[1]);
+  updateGeorgianVal(validateGeorgianAlph(value), arr[2]);
 
   if (
-    validateFourLetters(input.value) &&
-    validateTwoWords(input.value) &&
-    validateGeorgianAlph(input.value)
+    validateFourLetters(value) &&
+    validateTwoWords(value) &&
+    validateGeorgianAlph(value)
   ) {
     input.style.border = "1px solid green";
   } else input.style.border = "1px solid red";
+
+  blogInfo.author = value;
+  localStorage.setItem("blog-info", JSON.stringify(blogInfo));
 }
