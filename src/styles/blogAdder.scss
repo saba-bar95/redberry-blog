@@ -13,6 +13,7 @@
 
   .blog-adder-content {
     // padding: 0px 575px;
+    padding: 0 50px;
 
     h1 {
       font-size: 2.3em;
@@ -33,7 +34,6 @@
         gap: 12px;
 
         .image-uploader {
-          width: 600px;
           background-color: #e5e7eb;
           border: 1.5px dashed #85858d;
           border-radius: 12px;
@@ -64,7 +64,8 @@
         }
       }
 
-      .author-title-container {
+      .author-title-container,
+      .date-category-container {
         display: flex;
         justify-content: space-between;
         gap: 30px;
@@ -72,7 +73,8 @@
 
       .author-container,
       .title-container,
-      .description-container {
+      .description-container,
+      .date-container {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -88,7 +90,6 @@
 
         input,
         textarea {
-          width: 100%;
           padding: 15px 10px;
           font-family: inherit;
           border-radius: 12px;

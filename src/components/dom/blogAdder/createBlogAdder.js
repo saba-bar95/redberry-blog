@@ -5,6 +5,7 @@ import createAuthor from "./blogAuthor/createAuthor";
 import createTitle from "./blogTitle/createTitle";
 import createDescription from "./blogDescription/createDescription";
 import validateForm from "../../logic/blogAdder/validateForm";
+import createDate from "./blogDate /createDate";
 
 export default function createBlogAdder(status, blogInfo) {
   const blogAdder = document.createElement("div");
@@ -35,10 +36,15 @@ export default function createBlogAdder(status, blogInfo) {
   const authorTitleContainer = document.createElement("div");
   authorTitleContainer.classList.add("author-title-container");
   blogAdderForm.appendChild(authorTitleContainer);
-
   authorTitleContainer.appendChild(createAuthor(blogInfo));
   authorTitleContainer.appendChild(createTitle(blogInfo));
+
   blogAdderForm.appendChild(createDescription(blogInfo));
+
+  const dateCategoryContainer = document.createElement("div");
+  dateCategoryContainer.classList.add("date-category-container");
+  blogAdderForm.appendChild(dateCategoryContainer);
+  dateCategoryContainer.appendChild(createDate(blogInfo));
 
   const addBlogBtn = document.createElement("button");
   addBlogBtn.textContent = "გამოქვეყნება";
