@@ -1,9 +1,10 @@
 import backArrowImg from "/src/assets/images/back-arrow.png";
-import validateForm from "../../logic/blogAdder/validateForm";
+import displayMainDiv from "/src/components/dom/main/displayMainDiv.js";
 import createImageUploader from "./imageUploader/createImageUploader";
 import createAuthor from "./blogAuthor/createAuthor";
 import createTitle from "./blogTitle/createTitle";
-import displayMainDiv from "/src/components/dom/main/displayMainDiv.js";
+import createDescription from "./blogDescription/createDescription";
+import validateForm from "../../logic/blogAdder/validateForm";
 
 export default function createBlogAdder(status, blogInfo) {
   const blogAdder = document.createElement("div");
@@ -37,11 +38,16 @@ export default function createBlogAdder(status, blogInfo) {
 
   authorTitleContainer.appendChild(createAuthor(blogInfo));
   authorTitleContainer.appendChild(createTitle(blogInfo));
+  blogAdderForm.appendChild(createDescription(blogInfo));
 
   const addBlogBtn = document.createElement("button");
   addBlogBtn.textContent = "გამოქვეყნება";
   addBlogBtn.classList.add("add-blog-btn");
   blogAdderForm.appendChild(addBlogBtn);
+
+  // blogAdderForm.addEventListener("input", function () {
+  //   console.log("ss");
+  // });
 
   backArrow.addEventListener("click", displayMainDiv);
 

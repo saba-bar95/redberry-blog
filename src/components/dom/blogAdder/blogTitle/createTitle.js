@@ -20,7 +20,7 @@ export default function createTitle(blogInfo) {
   const titleInput = document.createElement("input");
   titleInput.classList.add("title-input");
   titleInput.setAttribute("id", "title-input");
-  titleInput.setAttribute("placeholder", "შეიყვანეთ ავტორი");
+  titleInput.setAttribute("placeholder", "შეიყვანეთ სათაური");
   titleContainer.appendChild(titleInput);
 
   const validationTexts = document.createElement("ul");
