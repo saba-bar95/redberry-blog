@@ -10,13 +10,13 @@ export default function createLoginModal() {
   const body = document.querySelector("body");
   body.style.overflow = "hidden";
 
-  const modalContainer = document.createElement("div");
-  modalContainer.setAttribute("id", "modal-container");
-  body.appendChild(modalContainer);
+  const container = document.createElement("div");
+  container.setAttribute("id", "modal-container");
+  body.appendChild(container);
 
   const modalContent = document.createElement("div");
   modalContent.classList.add("modal-content");
-  modalContainer.appendChild(modalContent);
+  container.appendChild(modalContent);
 
   const xImg = new Image();
   xImg.classList.add("x-img");
@@ -27,22 +27,22 @@ export default function createLoginModal() {
   inputContainer.classList.add("input-container");
   modalContent.appendChild(inputContainer);
 
-  const modalHeaderText = document.createElement("h1");
-  modalHeaderText.textContent = "შესვლა";
-  inputContainer.appendChild(modalHeaderText);
+  const text = document.createElement("h1");
+  text.textContent = "შესვლა";
+  inputContainer.appendChild(text);
 
-  const modalLabel = document.createElement("label");
-  modalLabel.textContent = "ელ-ფოსტა";
-  modalLabel.setAttribute("for", "email");
-  inputContainer.appendChild(modalLabel);
+  const label = document.createElement("label");
+  label.textContent = "ელ-ფოსტა";
+  label.setAttribute("for", "email");
+  inputContainer.appendChild(label);
 
-  const emailInput = document.createElement("input");
-  emailInput.setAttribute("type", "email");
-  emailInput.setAttribute("id", "email");
-  emailInput.setAttribute("placeholder", "Example@redberry.ge");
-  emailInput.setAttribute("required", "");
-  inputContainer.appendChild(emailInput);
-  emailInput.focus();
+  const input = document.createElement("input");
+  input.setAttribute("type", "email");
+  input.setAttribute("id", "email");
+  input.setAttribute("placeholder", "Example@redberry.ge");
+  input.setAttribute("required", "");
+  inputContainer.appendChild(input);
+  input.focus();
 
   const successContainer = document.createElement("div");
   successContainer.classList.add("success-container", "hidden");
@@ -78,7 +78,7 @@ export default function createLoginModal() {
   successBtn.textContent = "კარგი";
   modalContent.appendChild(successBtn);
 
-  modalContainer.addEventListener("click", (e) => {
+  container.addEventListener("click", (e) => {
     if (e.target.id === "modal-container") removeLoginModal(e);
   });
 
@@ -88,16 +88,16 @@ export default function createLoginModal() {
 
   entryBtn.addEventListener("click", updateLoginModal);
 
-  emailInput.addEventListener("keydown", (e) => {
+  input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       updateLoginModal();
     }
   });
 
   function updateLoginModal() {
-    if (loginUser(emailInput)) {
-      loginUser(emailInput).then((data) => {
-        updateLoginModalUI(data, modalContainer);
+    if (loginUser(input)) {
+      loginUser(input).then((data) => {
+        updateLoginModalUI(data, container);
         localStorage.setItem("login", JSON.stringify(true));
       });
     }
@@ -124,7 +124,7 @@ export default function createLoginModal() {
   };
 
   function normalBody() {
-    modalContainer.remove();
+    container.remove();
     body.style.overflow = "visible";
   }
 }

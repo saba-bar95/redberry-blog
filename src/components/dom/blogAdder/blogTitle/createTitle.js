@@ -2,69 +2,69 @@ import validateTitle from "../../../logic/blogAdder/validations/title/validateTi
 import updateTwoLetters from "./updateTwoLetters";
 
 const validations = ["მინიმუმ 2 სიმბოლო"];
-let validationContainer;
+let container;
 
 export default function createTitle(blogInfo) {
-  const titleContainer = document.createElement("div");
-  titleContainer.classList.add("title-container");
+  const div = document.createElement("div");
+  div.classList.add("container");
 
-  const titleLabel = document.createElement("label");
-  titleLabel.textContent = "სათაური";
-  titleLabel.setAttribute("for", "title-input");
-  titleContainer.appendChild(titleLabel);
+  const label = document.createElement("label");
+  label.textContent = "სათაური";
+  label.setAttribute("for", "title-input");
+  div.appendChild(label);
 
-  const titleLabelSpan = document.createElement("span");
-  titleLabelSpan.textContent = "*";
-  titleLabel.appendChild(titleLabelSpan);
+  const span = document.createElement("span");
+  span.textContent = "*";
+  label.appendChild(span);
 
-  const titleInput = document.createElement("input");
-  titleInput.classList.add("title-input");
-  titleInput.setAttribute("id", "title-input");
-  titleInput.setAttribute("placeholder", "შეიყვანეთ სათაური");
-  titleContainer.appendChild(titleInput);
+  const input = document.createElement("input");
+  input.classList.add("title-input");
+  input.setAttribute("id", "title-input");
+  input.setAttribute("placeholder", "შეიყვანეთ სათაური");
+  div.appendChild(input);
 
-  const validationTexts = document.createElement("ul");
-  validationTexts.classList.add("validation-texts");
-  titleContainer.appendChild(validationTexts);
+  const texts = document.createElement("ul");
+  texts.classList.add("validation-texts");
+  div.appendChild(texts);
 
   validations.forEach((el) => {
-    validationContainer = document.createElement("div");
-    validationContainer.classList.add("validation-container");
-    validationTexts.appendChild(validationContainer);
+    container = document.createElement("div");
+    container.classList.add("validation-container");
+    texts.appendChild(container);
 
-    const validationBefore = document.createElement("span");
-    validationBefore.classList.add("validation-before");
-    validationContainer.appendChild(validationBefore);
+    const before = document.createElement("span");
+    before.classList.add("validation-before");
+    container.appendChild(before);
 
-    const validationText = document.createElement("li");
-    validationText.textContent = el;
-    validationContainer.appendChild(validationText);
+    const text = document.createElement("li");
+    text.textContent = el;
+    container.appendChild(text);
   });
 
   if (blogInfo && blogInfo.title) {
-    titleInput.value = blogInfo.title;
-    validateTitle(titleInput, validationContainer);
+    input.value = blogInfo.title;
+    validateTitle(input, container);
   }
 
-  titleInput.addEventListener("keydown", function (e) {
+  input.addEventListener("keydown", function (e) {
     if (e.key === "Enter") e.preventDefault();
   });
 
-  titleInput.addEventListener("input", function () {
+  input.addEventListener("input", function () {
     if (this.value.charAt(0) === " ") {
       alert("Input should not start with a space");
       this.value = "";
       return;
     }
-    validateTitle(this, validationContainer);
+    validateTitle(this, container);
   });
 
-  titleInput.addEventListener("blur", function () {
+  input.addEventListener("blur", function () {
     if (this.value.length === 0) {
       this.style.border = "1px solid #e4e3eb";
-      updateTwoLetters("init", validationContainer);
+      updateTwoLetters("init", container);
     }
   });
 
-  return titleContainer;
+  return div;
 }

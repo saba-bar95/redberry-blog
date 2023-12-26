@@ -2,70 +2,70 @@ import validateDescription from "../../../logic/blogAdder/validations/descriptio
 import updateTwoLetters from "../blogTitle/updateTwoLetters";
 
 const validations = ["მინიმუმ 2 სიმბოლო"];
-let validationContainer;
+let container;
 
 export default function createDescription(blogInfo) {
-  const descriptionContainer = document.createElement("div");
-  descriptionContainer.classList.add("description-container");
+  const div = document.createElement("div");
+  div.classList.add("container");
 
-  const descriptionLabel = document.createElement("label");
-  descriptionLabel.textContent = "აღწერა";
-  descriptionLabel.setAttribute("for", "description-input");
-  descriptionContainer.appendChild(descriptionLabel);
+  const label = document.createElement("label");
+  label.textContent = "აღწერა";
+  label.setAttribute("for", "description-input");
+  div.appendChild(label);
 
-  const descriptionLabelSpan = document.createElement("span");
-  descriptionLabelSpan.textContent = "*";
-  descriptionLabel.appendChild(descriptionLabelSpan);
+  const span = document.createElement("span");
+  span.textContent = "*";
+  label.appendChild(span);
 
-  const descriptionInput = document.createElement("textarea");
-  descriptionInput.setAttribute("rows", 6);
-  descriptionInput.classList.add("description-input");
-  descriptionInput.setAttribute("id", "description-input");
-  descriptionInput.setAttribute("placeholder", "შეიყვანეთ აღწერა");
-  descriptionContainer.appendChild(descriptionInput);
+  const textarea = document.createElement("textarea");
+  textarea.setAttribute("rows", 6);
+  textarea.classList.add("description-input");
+  textarea.setAttribute("id", "description-input");
+  textarea.setAttribute("placeholder", "შეიყვანეთ აღწერა");
+  div.appendChild(textarea);
 
-  const validationTexts = document.createElement("ul");
-  validationTexts.classList.add("validation-texts");
-  descriptionContainer.appendChild(validationTexts);
+  const texts = document.createElement("ul");
+  texts.classList.add("validation-texts");
+  div.appendChild(texts);
 
   validations.forEach((el) => {
-    validationContainer = document.createElement("div");
-    validationContainer.classList.add("validation-container");
-    validationTexts.appendChild(validationContainer);
+    container = document.createElement("div");
+    container.classList.add("validation-container");
+    texts.appendChild(container);
 
-    const validationBefore = document.createElement("span");
-    validationBefore.classList.add("validation-before");
-    validationContainer.appendChild(validationBefore);
+    const before = document.createElement("span");
+    before.classList.add("validation-before");
+    container.appendChild(before);
 
-    const validationText = document.createElement("li");
-    validationText.textContent = el;
-    validationContainer.appendChild(validationText);
+    const text = document.createElement("li");
+    text.textContent = el;
+    container.appendChild(text);
   });
 
   if (blogInfo && blogInfo.description) {
-    descriptionInput.value = blogInfo.description;
-    validateDescription(descriptionInput, validationContainer);
+    textarea.value = blogInfo.description;
+    validateDescription(textarea, container);
   }
 
-  descriptionInput.addEventListener("keydown", function (e) {
+  textarea.addEventListener("keydown", function (e) {
     if (e.key === "Enter") e.preventDefault();
   });
 
-  descriptionInput.addEventListener("input", function () {
+  textarea.addEventListener("input", function () {
     if (this.value.charAt(0) === " ") {
       alert("Input should not start with a space");
       this.value = "";
       return;
     }
-    validateDescription(this, validationContainer);
+    validateDescription(this, container);
   });
 
-  descriptionInput.addEventListener("blur", function () {
+  textarea.addEventListener("blur", function () {
     if (this.value.length === 0) {
       this.style.border = "1px solid #e4e3eb";
-      updateTwoLetters("init", validationContainer);
+      updateTwoLetters("init", container);
     }
   });
 
-  return descriptionContainer;
+  return div;
 }

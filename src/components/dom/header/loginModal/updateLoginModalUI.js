@@ -1,15 +1,15 @@
 import { removeLoginModal } from "./createLoginModal";
 
 export default function updateLoginModalUI(data, div) {
-  const inputContainer = div.querySelector(".input-container");
-  const emailInput = div.querySelector("input");
+  const container = div.querySelector(".input-container");
+  const input = div.querySelector("input");
   const successContainer = div.querySelector(".success-container");
   const errorContainer = div.querySelector(".error-container");
   const entryBtn = div.querySelector(".entry-btn");
   const successBtn = div.querySelector(".success-btn");
 
   if (data) {
-    inputContainer.classList.add("hidden");
+    container.classList.add("hidden");
     successContainer.classList.remove("hidden");
     entryBtn.classList.add("hidden");
     successBtn.classList.remove("hidden");
@@ -24,22 +24,22 @@ export default function updateLoginModalUI(data, div) {
 
   if (!data) {
     errorContainer.classList.remove("hidden");
-    emailInput.style.borderColor = "#ff0000";
-    emailInput.style.marginBottom = "10px";
+    input.style.borderColor = "#ff0000";
+    input.style.marginBottom = "10px";
 
-    emailInput.addEventListener("focus", () => {
-      emailInputEvents("#5d37f3");
+    input.addEventListener("focus", () => {
+      inputEvents("#5d37f3");
     });
-    emailInput.addEventListener("input", () => {
-      emailInputEvents("#5d37f3");
+    input.addEventListener("input", () => {
+      inputEvents("#5d37f3");
     });
-    emailInput.addEventListener("blur", () => {
-      emailInputEvents("#000000");
+    input.addEventListener("blur", () => {
+      inputEvents("#000000");
     });
 
-    function emailInputEvents(color) {
-      emailInput.style.borderColor = color;
-      emailInput.style.marginBottom = "20px";
+    function inputEvents(color) {
+      input.style.borderColor = color;
+      input.style.marginBottom = "20px";
       if (!errorContainer.classList.contains("hidden"))
         errorContainer.classList.add("hidden");
     }

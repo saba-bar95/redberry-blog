@@ -1,39 +1,39 @@
 import validateDate from "../../../logic/blogAdder/validations/date/validateDate";
 
 export default function createDate(blogInfo) {
-  const dateContainer = document.createElement("div");
-  dateContainer.classList.add("date-container");
+  const div = document.createElement("div");
+  div.classList.add("container");
 
-  const dateLabel = document.createElement("label");
-  dateLabel.textContent = "გამოქვეყნების თარიღი";
-  dateLabel.setAttribute("for", "date-input");
-  dateContainer.appendChild(dateLabel);
+  const label = document.createElement("label");
+  label.textContent = "გამოქვეყნების თარიღი";
+  label.setAttribute("for", "date-input");
+  div.appendChild(label);
 
-  const dateLabelSpan = document.createElement("span");
-  dateLabelSpan.textContent = "*";
-  dateLabel.appendChild(dateLabelSpan);
+  const span = document.createElement("span");
+  span.textContent = "*";
+  label.appendChild(span);
 
-  const dateInput = document.createElement("input");
-  dateInput.setAttribute("type", "date");
-  dateInput.setAttribute("id", "date-input");
-  dateContainer.appendChild(dateInput);
+  const input = document.createElement("input");
+  input.setAttribute("type", "date");
+  input.setAttribute("id", "date-input");
+  div.appendChild(input);
 
   if (blogInfo && blogInfo.date) {
-    dateInput.value = blogInfo.date;
-    validateDate(dateInput);
+    input.value = blogInfo.date;
+    validateDate(input);
   }
 
-  dateInput.addEventListener("change", function () {
-    validateDate(dateInput);
+  input.addEventListener("change", function () {
+    validateDate(input);
   });
 
-  dateInput.addEventListener("focus", function () {
-    if (!dateInput.value) dateInput.style.border = "1px solid red";
+  input.addEventListener("focus", function () {
+    if (!input.value) input.style.border = "1px solid red";
   });
 
-  dateInput.addEventListener("blur", function () {
-    if (!dateInput.value) dateInput.style.border = "1px solid #e4e3eb";
+  input.addEventListener("blur", function () {
+    if (!input.value) input.style.border = "1px solid #e4e3eb";
   });
 
-  return dateContainer;
+  return div;
 }

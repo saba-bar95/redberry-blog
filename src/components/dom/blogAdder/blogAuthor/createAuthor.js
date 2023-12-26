@@ -11,53 +11,53 @@ const validations = [
 const validationArr = [];
 
 export default function createAuthor(blogInfo) {
-  const authorContainer = document.createElement("div");
-  authorContainer.classList.add("author-container");
+  const div = document.createElement("div");
+  div.classList.add("container");
 
-  const authorLabel = document.createElement("label");
-  authorLabel.textContent = "ავტორი";
-  authorLabel.setAttribute("for", "author-input");
-  authorContainer.appendChild(authorLabel);
+  const label = document.createElement("label");
+  label.textContent = "ავტორი";
+  label.setAttribute("for", "author-input");
+  div.appendChild(label);
 
-  const authorLabelSpan = document.createElement("span");
-  authorLabelSpan.textContent = "*";
-  authorLabel.appendChild(authorLabelSpan);
+  const span = document.createElement("span");
+  span.textContent = "*";
+  label.appendChild(span);
 
-  const authorInput = document.createElement("input");
-  authorInput.classList.add("author-input");
-  authorInput.setAttribute("id", "author-input");
-  authorInput.setAttribute("placeholder", "შეიყვანეთ ავტორი");
-  authorContainer.appendChild(authorInput);
+  const input = document.createElement("input");
+  input.classList.add("author-input");
+  input.setAttribute("id", "author-input");
+  input.setAttribute("placeholder", "შეიყვანეთ ავტორი");
+  div.appendChild(input);
 
-  const validationTexts = document.createElement("ul");
-  validationTexts.classList.add("validation-texts");
-  authorContainer.appendChild(validationTexts);
+  const texts = document.createElement("ul");
+  texts.classList.add("validation-texts");
+  div.appendChild(texts);
 
   validations.forEach((el) => {
-    const validationContainer = document.createElement("div");
-    validationContainer.classList.add("validation-container");
-    validationTexts.appendChild(validationContainer);
-    validationArr.push(validationContainer);
+    const container = document.createElement("div");
+    container.classList.add("validation-container");
+    texts.appendChild(container);
+    validationArr.push(container);
 
     const validationBefore = document.createElement("span");
     validationBefore.classList.add("validation-before");
-    validationContainer.appendChild(validationBefore);
+    container.appendChild(validationBefore);
 
     const validationText = document.createElement("li");
     validationText.textContent = el;
-    validationContainer.appendChild(validationText);
+    container.appendChild(validationText);
   });
 
   if (blogInfo && blogInfo.author) {
-    authorInput.value = blogInfo.author;
-    validateAuthor(authorInput, validationArr);
+    input.value = blogInfo.author;
+    validateAuthor(input, validationArr);
   }
 
-  authorInput.addEventListener("keydown", function (e) {
+  input.addEventListener("keydown", function (e) {
     if (e.key === "Enter") e.preventDefault();
   });
 
-  authorInput.addEventListener("input", function () {
+  input.addEventListener("input", function () {
     if (this.value.charAt(0) === " ") {
       alert("Input should not start with a space");
       this.value = "";
@@ -66,7 +66,7 @@ export default function createAuthor(blogInfo) {
     validateAuthor(this, validationArr);
   });
 
-  authorInput.addEventListener("blur", function () {
+  input.addEventListener("blur", function () {
     if (this.value.length === 0) {
       this.style.border = "1px solid #e4e3eb";
       updateFourLetters("init", validationArr[0]);
@@ -75,5 +75,5 @@ export default function createAuthor(blogInfo) {
     }
   });
 
-  return authorContainer;
+  return div;
 }

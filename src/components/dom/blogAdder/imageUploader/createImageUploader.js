@@ -1,78 +1,78 @@
-import folderAdderImg from "/src/assets/images/folder-add.png";
+import folderImg from "/src/assets/images/folder-add.png";
 import removeImgPng from "/src/assets/images/remove.png";
 import updateImageUploader from "./updateImageUploader";
 
 export default function createImageUploader(blogInfo) {
-  const imageUploaderContainer = document.createElement("div");
-  imageUploaderContainer.classList.add("img-uploader-container");
+  const div = document.createElement("div");
+  div.classList.add("img-uploader-container");
 
-  const uploadImageText = document.createElement("p");
-  uploadImageText.textContent = "ატვირთეთ ფოტო";
-  imageUploaderContainer.appendChild(uploadImageText);
+  const text = document.createElement("p");
+  text.textContent = "ატვირთეთ ფოტო";
+  div.appendChild(text);
 
-  const imageUploader = document.createElement("div");
-  imageUploader.setAttribute("id", "image-uploader");
-  imageUploader.classList.add("image-uploader");
-  imageUploaderContainer.appendChild(imageUploader);
+  const uploader = document.createElement("div");
+  uploader.setAttribute("id", "image-uploader");
+  uploader.classList.add("image-uploader");
+  div.appendChild(uploader);
 
-  const imageInput = document.createElement("input");
-  imageInput.setAttribute("type", "file");
-  imageInput.setAttribute("id", "image-input");
-  imageInput.setAttribute("accept", "image/*");
-  imageInput.setAttribute("hidden", "");
-  imageUploader.appendChild(imageInput);
+  const input = document.createElement("input");
+  input.setAttribute("type", "file");
+  input.setAttribute("id", "image-input");
+  input.setAttribute("accept", "image/*");
+  input.setAttribute("hidden", "");
+  uploader.appendChild(input);
 
-  const folderAdder = new Image();
-  folderAdder.classList.add("folder-adder-img");
-  folderAdder.src = folderAdderImg;
-  imageUploader.appendChild(folderAdder);
+  const img = new Image();
+  img.classList.add("folder-adder-img");
+  img.src = folderImg;
+  uploader.appendChild(img);
 
-  const imageTexts = document.createElement("div");
-  imageTexts.classList.add("image-texts");
-  imageUploader.appendChild(imageTexts);
+  const texts = document.createElement("div");
+  texts.classList.add("image-texts");
+  uploader.appendChild(texts);
 
-  const imageTextSpan = document.createElement("span");
-  imageTextSpan.classList.add("image-text-span");
-  imageTextSpan.textContent = "ჩააგდეთ ფაილი აქ ან";
-  imageTexts.appendChild(imageTextSpan);
+  const span = document.createElement("span");
+  span.classList.add("image-text-span");
+  span.textContent = "ჩააგდეთ ფაილი აქ ან";
+  texts.appendChild(span);
 
-  const imageInputLabel = document.createElement("label");
-  imageInputLabel.setAttribute("for", "image-input");
-  imageInputLabel.classList.add("image-input-label");
-  imageInputLabel.textContent = "აირჩიეთ ფაილი";
-  imageTexts.appendChild(imageInputLabel);
+  const label = document.createElement("label");
+  label.setAttribute("for", "image-input");
+  label.classList.add("image-input-label");
+  label.textContent = "აირჩიეთ ფაილი";
+  texts.appendChild(label);
 
   const removeImg = new Image();
   removeImg.src = removeImgPng;
   removeImg.classList.add("remove-img", "hidden");
-  imageTexts.appendChild(removeImg);
+  texts.appendChild(removeImg);
 
   if (blogInfo && blogInfo.imageURL) {
     updateImageUploader(
-      imageInput,
+      input,
       blogInfo,
-      imageUploader,
-      imageTexts,
-      imageInputLabel,
-      imageTextSpan,
-      folderAdder,
+      uploader,
+      texts,
+      label,
+      span,
+      img,
       removeImg,
-      imageInput,
+      input,
       true
     );
   }
 
-  imageInput.addEventListener("change", function (e) {
+  input.addEventListener("change", function (e) {
     updateImageUploader(
       e.target,
       blogInfo,
-      imageUploader,
-      imageTexts,
-      imageInputLabel,
-      imageTextSpan,
-      folderAdder,
+      uploader,
+      texts,
+      label,
+      span,
+      img,
       removeImg,
-      imageInput,
+      input,
       false
     );
   });
@@ -81,16 +81,16 @@ export default function createImageUploader(blogInfo) {
     updateImageUploader(
       e.target,
       blogInfo,
-      imageUploader,
-      imageTexts,
-      imageInputLabel,
-      imageTextSpan,
-      folderAdder,
+      uploader,
+      texts,
+      label,
+      span,
+      img,
       removeImg,
-      imageInput,
+      input,
       false
     );
   });
 
-  return imageUploaderContainer;
+  return div;
 }

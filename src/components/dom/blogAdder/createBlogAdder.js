@@ -6,6 +6,7 @@ import createTitle from "./blogTitle/createTitle";
 import createDescription from "./blogDescription/createDescription";
 import validateForm from "../../logic/blogAdder/validateForm";
 import createDate from "./blogDate /createDate";
+import createBlogCategories from "./blogCategories/createBlogCategories";
 
 export default function createBlogAdder(status, blogInfo) {
   const blogAdder = document.createElement("div");
@@ -18,40 +19,42 @@ export default function createBlogAdder(status, blogInfo) {
   backArrow.src = backArrowImg;
   blogAdder.appendChild(backArrow);
 
-  const blogAdderContent = document.createElement("div");
-  blogAdderContent.classList.add("blog-adder-content");
-  blogAdder.appendChild(blogAdderContent);
+  const content = document.createElement("div");
+  content.classList.add("blog-adder-content");
+  blogAdder.appendChild(content);
 
-  const blogAdderText = document.createElement("h1");
-  blogAdderText.textContent = "ბლოგის დამატება";
-  blogAdderContent.appendChild(blogAdderText);
+  const text = document.createElement("h1");
+  text.textContent = "ბლოგის დამატება";
+  content.appendChild(text);
 
-  const blogAdderForm = document.createElement("form");
-  blogAdderForm.classList.add("blog-form");
-  blogAdderForm.setAttribute("id", "blog-form");
-  blogAdderContent.appendChild(blogAdderForm);
+  const form = document.createElement("form");
+  form.classList.add("blog-form");
+  form.setAttribute("id", "blog-form");
+  content.appendChild(form);
 
-  blogAdderForm.appendChild(createImageUploader(blogInfo));
+  form.appendChild(createImageUploader(blogInfo));
 
-  const authorTitleContainer = document.createElement("div");
-  authorTitleContainer.classList.add("author-title-container");
-  blogAdderForm.appendChild(authorTitleContainer);
-  authorTitleContainer.appendChild(createAuthor(blogInfo));
-  authorTitleContainer.appendChild(createTitle(blogInfo));
+  const authorTitle = document.createElement("div");
+  authorTitle.classList.add("author-title-container");
+  form.appendChild(authorTitle);
+  authorTitle.appendChild(createAuthor(blogInfo));
+  authorTitle.appendChild(createTitle(blogInfo));
 
-  blogAdderForm.appendChild(createDescription(blogInfo));
+  form.appendChild(createDescription(blogInfo));
 
-  const dateCategoryContainer = document.createElement("div");
-  dateCategoryContainer.classList.add("date-category-container");
-  blogAdderForm.appendChild(dateCategoryContainer);
-  dateCategoryContainer.appendChild(createDate(blogInfo));
+  const dateCategory = document.createElement("div");
+  dateCategory.classList.add("date-category-container");
+  form.appendChild(dateCategory);
+
+  dateCategory.appendChild(createDate(blogInfo));
+  dateCategory.appendChild(createBlogCategories(blogInfo));
 
   const addBlogBtn = document.createElement("button");
   addBlogBtn.textContent = "გამოქვეყნება";
   addBlogBtn.classList.add("add-blog-btn");
-  blogAdderForm.appendChild(addBlogBtn);
+  form.appendChild(addBlogBtn);
 
-  // blogAdderForm.addEventListener("input", function () {
+  // form.addEventListener("input", function () {
   //   console.log("ss");
   // });
 

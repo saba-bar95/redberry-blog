@@ -10,19 +10,18 @@ const url = "https://api.blog.redberryinternship.ge/api";
 const token =
   "fc9a807608d006f9d7604bc78bf62b027a2247c0c232dc217a6e1d5476d5271a";
 
-const loginStatus = JSON.parse(localStorage.getItem("login"));
-if (!loginStatus) localStorage.setItem("login", JSON.stringify(false));
+const login = JSON.parse(localStorage.getItem("login"));
+if (!login) localStorage.setItem("login", JSON.stringify(false));
 
-const blogAdderStatus = JSON.parse(localStorage.getItem("blog-adder-status"));
-if (!blogAdderStatus)
-  localStorage.setItem("blog-adder-status", JSON.stringify(false));
+const status = JSON.parse(localStorage.getItem("blog-adder-status"));
+if (!status) localStorage.setItem("blog-adder-status", JSON.stringify(false));
 
 const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
 if (!blogInfo) localStorage.setItem("blog-info", JSON.stringify({}));
 
-body.appendChild(createHeader(loginStatus));
-body.appendChild(createMain(blogAdderStatus));
-body.appendChild(createBlogAdder(blogAdderStatus, blogInfo));
+body.appendChild(createHeader(login));
+body.appendChild(createMain(status));
+body.appendChild(createBlogAdder(status, blogInfo));
 
 fetchCategories(url).then((data) => {
   createCategories(data);

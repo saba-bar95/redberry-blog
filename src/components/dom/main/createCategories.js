@@ -1,19 +1,19 @@
 export default function createCategories(data) {
-  const mainContent = document.querySelector(".main-content");
+  const content = document.querySelector(".main-content");
 
-  const categoriesContainer = document.createElement("div");
-  categoriesContainer.classList.add("categories-container");
-  mainContent.appendChild(categoriesContainer);
+  const categories = document.createElement("div");
+  categories.classList.add("categories-container");
+  content.appendChild(categories);
 
   data.data.forEach((el) => {
     const category = document.createElement("div");
     category.classList.add("category", `category-${el.id}`);
     category.style.backgroundColor = el.background_color;
-    categoriesContainer.appendChild(category);
+    categories.appendChild(category);
 
-    const titleText = document.createElement("p");
-    titleText.textContent = el.title;
-    titleText.style.color = el.text_color;
-    category.appendChild(titleText);
+    const text = document.createElement("p");
+    text.textContent = el.title;
+    text.style.color = el.text_color;
+    category.appendChild(text);
   });
 }

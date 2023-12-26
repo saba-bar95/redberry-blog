@@ -1,25 +1,25 @@
-import blogLogoImg from "/src/assets/images/blog-logo.png";
+import logoImg from "/src/assets/images/blog-logo.png";
 
 export default function createMain(status) {
   const main = document.createElement("div");
   main.setAttribute("id", "main-div");
   if (status) main.classList.add("hidden");
 
-  const mainContent = document.createElement("div");
-  mainContent.classList.add("main-content");
-  main.appendChild(mainContent);
+  const content = document.createElement("div");
+  content.classList.add("main-content");
+  main.appendChild(content);
 
-  const mainInfo = document.createElement("div");
-  mainInfo.classList.add("main-info");
-  mainContent.appendChild(mainInfo);
+  const info = document.createElement("div");
+  info.classList.add("main-info");
+  content.appendChild(info);
 
-  const blogText = document.createElement("h1");
-  blogText.textContent = "ბლოგი";
-  mainInfo.appendChild(blogText);
+  const text = document.createElement("h1");
+  text.textContent = "ბლოგი";
+  info.appendChild(text);
 
-  const blogLogo = new Image();
-  blogLogo.src = blogLogoImg;
-  mainInfo.appendChild(blogLogo);
+  const logo = new Image();
+  logo.src = logoImg;
+  info.appendChild(logo);
 
   return main;
 }

@@ -1,29 +1,29 @@
 export default function updateImageUploader(
   e,
   blogInfo,
-  imageUploader,
-  imageTexts,
-  imageInputLabel,
-  imageTextSpan,
-  folderAdder,
+  uploader,
+  texts,
+  label,
+  span,
+  img,
   removeImg,
-  imageInput,
+  input,
   refreshPage
 ) {
   if (refreshPage && e.id === "image-input") {
     image();
-    imageInputLabel.textContent = blogInfo.imageName;
+    label.textContent = blogInfo.imageName;
     return;
   }
 
   if (!refreshPage && e.id === "image-input") {
-    if (!imageInput.files[0]) return;
+    if (!input.files[0]) return;
     image();
-    imageInputLabel.textContent = imageInput.files[0].name;
+    label.textContent = input.files[0].name;
 
     const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
-    blogInfo.imageURL = imageInput.value;
-    blogInfo.imageName = imageInput.files[0].name;
+    blogInfo.imageURL = input.value;
+    blogInfo.imageName = input.files[0].name;
     localStorage.setItem("blog-info", JSON.stringify(blogInfo));
     return;
   }
@@ -38,24 +38,24 @@ export default function updateImageUploader(
   }
 
   function image() {
-    imageUploader.style.padding = "20px";
-    imageTexts.style.justifyContent = "space-between";
-    imageInputLabel.style.textDecoration = "none";
-    imageInputLabel.style.fontWeight = "500";
-    imageTextSpan.classList.add("hidden");
-    folderAdder.classList.add("hidden");
+    uploader.style.padding = "20px";
+    texts.style.justifyContent = "space-between";
+    label.style.textDecoration = "none";
+    label.style.fontWeight = "500";
+    span.classList.add("hidden");
+    img.classList.add("hidden");
     removeImg.classList.remove("hidden");
   }
 
   function noImage() {
-    imageUploader.style.padding = "80px 100px";
-    imageTexts.style.justifyContent = "center";
-    imageInputLabel.textContent = "აირჩიეთ ფაილი";
-    imageInputLabel.style.textDecoration = "underline";
-    imageInputLabel.style.fontWeight = "700";
-    imageTextSpan.classList.remove("hidden");
-    folderAdder.classList.remove("hidden");
+    uploader.style.padding = "80px 100px";
+    texts.style.justifyContent = "center";
+    label.textContent = "აირჩიეთ ფაილი";
+    label.style.textDecoration = "underline";
+    label.style.fontWeight = "700";
+    span.classList.remove("hidden");
+    img.classList.remove("hidden");
     removeImg.classList.add("hidden");
-    imageInput.value = "";
+    input.value = "";
   }
 }
