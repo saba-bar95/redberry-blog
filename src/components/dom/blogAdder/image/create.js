@@ -1,6 +1,6 @@
 import folderImg from "/src/assets/images/folder-add.png";
 import removeImgPng from "/src/assets/images/remove.png";
-import updateImageUploader from "./updateImageUploader";
+import updateImageUploader from "./update";
 
 export default function createImageUploader(blogInfo) {
   const div = document.createElement("div");

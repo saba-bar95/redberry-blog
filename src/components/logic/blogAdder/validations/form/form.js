@@ -1,4 +1,4 @@
-import validateImg from "./validations/image/validateImg";
+import validateImg from "../image/image";
 
 export default function validateForm(blogInfo) {
   if (validateImg(blogInfo)) return true;

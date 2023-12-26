@@ -1,6 +1,6 @@
 import logoImg from "/src/assets/images/redberry-logo.png";
-import createLoginModal from "./loginModal/createLoginModal";
-import displayBlogAdder from "../blogAdder/displayBlogAdder";
+import createLoginModal from "./loginModal/create";
+import displayBlogAdder from "../blogAdder/display";
 
 export default function createHeader(status) {
   const header = document.createElement("div");

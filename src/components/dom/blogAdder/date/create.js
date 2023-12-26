@@ -1,4 +1,4 @@
-import validateDate from "../../../logic/blogAdder/validations/date/validateDate";
+import validateDate from "../../../logic/blogAdder/validations/date/date";
 
 export default function createDate(blogInfo) {
   const div = document.createElement("div");
@@ -28,7 +28,7 @@ export default function createDate(blogInfo) {
   });
 
   input.addEventListener("focus", function () {
-    if (!input.value) input.style.border = "1px solid red";
+    if (!input.value) input.style.border = "1px solid #EA1919";
   });
 
   input.addEventListener("blur", function () {

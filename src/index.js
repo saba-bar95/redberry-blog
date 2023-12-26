@@ -1,9 +1,9 @@
 import "/src/index.scss";
-import createHeader from "./components/dom/header/createHeader";
-import createMain from "./components/dom/main/createMain";
-import createBlogAdder from "./components/dom/blogAdder/createBlogAdder";
-import fetchCategories from "./components/logic/categories/fetchCategories";
-import createCategories from "./components/dom/main/createCategories";
+import createHeader from "./components/dom/header/create";
+import createMain from "./components/dom/main/create";
+import createBlogAdder from "./components/dom/blogAdder/create";
+import fetchCategories from "./components/logic/categories/fetch";
+import createCategories from "./components/dom/main/categories/create";
 
 const body = document.querySelector("body");
 const url = "https://api.blog.redberryinternship.ge/api";

@@ -1,4 +1,4 @@
-import { removeLoginModal } from "./createLoginModal";
+import { removeLoginModal } from "./create";
 
 export default function updateLoginModalUI(data, div) {
   const container = div.querySelector(".input-container");

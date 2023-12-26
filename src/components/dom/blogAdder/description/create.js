@@ -1,27 +1,30 @@
-import validateTitle from "../../../logic/blogAdder/validations/title/validateTitle";
-import updateTwoLetters from "./updateTwoLetters";
+import validateDescription from "../../../logic/blogAdder/validations/description/description";
+import updateTitle from "../title/update";
 
 const validations = ["მინიმუმ 2 სიმბოლო"];
 let container;
 
-export default function createTitle(blogInfo) {
+export default function createDescription(blogInfo) {
   const div = document.createElement("div");
   div.classList.add("container");
 
   const label = document.createElement("label");
-  label.textContent = "სათაური";
-  label.setAttribute("for", "title-input");
+  label.textContent = "აღწერა";
+  label.setAttribute("for", "description-input");
   div.appendChild(label);
 
   const span = document.createElement("span");
   span.textContent = "*";
   label.appendChild(span);
 
-  const input = document.createElement("input");
-  input.classList.add("title-input");
-  input.setAttribute("id", "title-input");
-  input.setAttribute("placeholder", "შეიყვანეთ სათაური");
-  div.appendChild(input);
+  const textarea = document.createElement("textarea");
+  textarea.setAttribute("placeholder", "შეიყვანეთ აღწერა");
+  textarea.setAttribute("rows", 6);
+  textarea.setAttribute("spellcheck", "off");
+  textarea.setAttribute("id", "description-input");
+  textarea.style.resize = "none";
+
+  div.appendChild(textarea);
 
   const texts = document.createElement("ul");
   texts.classList.add("validation-texts");
@@ -41,28 +44,28 @@ export default function createTitle(blogInfo) {
     container.appendChild(text);
   });
 
-  if (blogInfo && blogInfo.title) {
-    input.value = blogInfo.title;
-    validateTitle(input, container);
+  if (blogInfo && blogInfo.description) {
+    textarea.value = blogInfo.description;
+    validateDescription(textarea, container);
   }
 
-  input.addEventListener("keydown", function (e) {
+  textarea.addEventListener("keydown", function (e) {
     if (e.key === "Enter") e.preventDefault();
   });
 
-  input.addEventListener("input", function () {
+  textarea.addEventListener("input", function () {
     if (this.value.charAt(0) === " ") {
       alert("Input should not start with a space");
       this.value = "";
       return;
     }
-    validateTitle(this, container);
+    validateDescription(this, container);
   });
 
-  input.addEventListener("blur", function () {
+  textarea.addEventListener("blur", function () {
     if (this.value.length === 0) {
       this.style.border = "1px solid #e4e3eb";
-      updateTwoLetters("init", container);
+      updateTitle("init", container);
     }
   });
 

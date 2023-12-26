@@ -1,7 +1,5 @@
-import validateAuthor from "../../../logic/blogAdder/validations/author/validateAuthor";
-import updateFourLetters from "./updateFourLetters";
-import updateTwoWordsVal from "./updateTwoWordsVal";
-import updateGeorgianVal from "./updateGeorgianVal";
+import validateAuthor from "../../../logic/blogAdder/validations/author/author";
+import updateAuthor from "./update";
 
 const validations = [
   "მინიმუმ 4 სიმბოლო",
@@ -69,9 +67,9 @@ export default function createAuthor(blogInfo) {
   input.addEventListener("blur", function () {
     if (this.value.length === 0) {
       this.style.border = "1px solid #e4e3eb";
-      updateFourLetters("init", validationArr[0]);
-      updateGeorgianVal("init", validationArr[1]);
-      updateTwoWordsVal("init", validationArr[2]);
+      updateAuthor("init", validationArr[0]);
+      updateAuthor("init", validationArr[1]);
+      updateAuthor("init", validationArr[2]);
     }
   });
 

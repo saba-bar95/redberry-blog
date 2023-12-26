@@ -2,7 +2,7 @@ import xSvg from "/src/assets/images/x-icon.svg";
 import redCircleImg from "/src/assets/images/info-circle.png";
 import greenSuccessImg from "/src/assets/images/success-circle.png";
 import loginUser from "../../../logic/loginUser/loginUser";
-import updateLoginModalUI from "./updateLoginModalUI";
+import updateLoginModalUI from "./update";
 
 let removeLoginModal;
 

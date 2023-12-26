@@ -1,12 +1,12 @@
 import backArrowImg from "/src/assets/images/back-arrow.png";
-import displayMainDiv from "/src/components/dom/main/displayMainDiv.js";
-import createImageUploader from "./imageUploader/createImageUploader";
-import createAuthor from "./blogAuthor/createAuthor";
-import createTitle from "./blogTitle/createTitle";
-import createDescription from "./blogDescription/createDescription";
-import validateForm from "../../logic/blogAdder/validateForm";
-import createDate from "./blogDate /createDate";
-import createBlogCategories from "./blogCategories/createBlogCategories";
+import displayMainDiv from "/src/components/dom/main/display.js";
+import createAuthor from "./author/create";
+import createBlogCategories from "./categories/create";
+import createDate from "./date/create";
+import createDescription from "./description/create";
+import createTitle from "./title/create";
+import createImageUploader from "./image/create";
+import validateForm from "../../logic/blogAdder/validations/form/form";
 
 export default function createBlogAdder(status, blogInfo) {
   const blogAdder = document.createElement("div");
@@ -34,11 +34,11 @@ export default function createBlogAdder(status, blogInfo) {
 
   form.appendChild(createImageUploader(blogInfo));
 
-  const authorTitle = document.createElement("div");
-  authorTitle.classList.add("author-title-container");
-  form.appendChild(authorTitle);
-  authorTitle.appendChild(createAuthor(blogInfo));
-  authorTitle.appendChild(createTitle(blogInfo));
+  const title = document.createElement("div");
+  title.classList.add("author-title-container");
+  form.appendChild(title);
+  title.appendChild(createAuthor(blogInfo));
+  title.appendChild(createTitle(blogInfo));
 
   form.appendChild(createDescription(blogInfo));
 
