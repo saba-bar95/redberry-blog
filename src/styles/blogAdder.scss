@@ -32,6 +32,9 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
+        &:hover {
+          cursor: pointer;
+        }
 
         .image-uploader {
           background-color: #e5e7eb;
@@ -51,7 +54,7 @@
             justify-content: center;
             gap: 5px;
 
-            label {
+            p {
               text-decoration: underline;
               cursor: pointer;
               font-weight: 700;

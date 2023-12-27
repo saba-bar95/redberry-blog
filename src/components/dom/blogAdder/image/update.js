@@ -8,23 +8,49 @@ export default function updateImageUploader(
   img,
   removeImg,
   input,
-  refreshPage
+  refreshPage,
+  filez
 ) {
   if (refreshPage && e.id === "image-input") {
     image();
-    label.textContent = blogInfo.imageName;
+    label.textContent = blogInfo.image.name;
+
+    const base64String = "your base64 string";
+    const fileType = blogInfo.image.type;
+    const fileName = blogInfo.image.name;
+    const file = base64StringToFile(base64String, fileType, fileName);
+    console.log(file);
     return;
   }
 
-  if (!refreshPage && e.id === "image-input") {
-    if (!input.files[0]) return;
+  if (
+    !e.classList.contains("remove-img") &&
+    !refreshPage &&
+    (e.id === "image-input" || e.closest("#image-uploader"))
+  ) {
+    if (!input.files[0] && e.id === "image-input") return;
+
+    let files;
+    if (input.files[0]) files = input.files[0];
+    else files = filez[0];
+
     image();
-    label.textContent = input.files[0].name;
+    label.textContent = files.name;
 
     const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
-    blogInfo.imageURL = input.value;
-    blogInfo.imageName = input.files[0].name;
-    localStorage.setItem("blog-info", JSON.stringify(blogInfo));
+
+    getBase64(files)
+      .then(function (base64) {
+        blogInfo.image = {};
+        blogInfo.image.base64 = base64;
+        blogInfo.image.name = files.name;
+        blogInfo.image.type = files.type;
+        localStorage.setItem("blog-info", JSON.stringify(blogInfo));
+      })
+      .catch(function (error) {
+        console.log("Failed to get base64 string: ", error);
+      });
+
     return;
   }
 
@@ -32,9 +58,40 @@ export default function updateImageUploader(
     noImage();
 
     const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
-    blogInfo.imageURL = null;
-    blogInfo.imageName = null;
+    blogInfo.image = null;
     localStorage.setItem("blog-info", JSON.stringify(blogInfo));
+  }
+
+  function base64StringToFile(base64String, fileType, fileName) {
+    // Convert base64 string to byte array
+    const byteCharacters = atob(base64String);
+    const byteArrays = [];
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+      const slice = byteCharacters.slice(offset, offset + 512);
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    // Convert byte array to Blob
+    const blob = new Blob(byteArrays, { type: fileType });
+
+    // Convert Blob to File
+    const file = new File([blob], fileName, { type: fileType });
+
+    return file;
+  }
+
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
   }
 
   function image() {
