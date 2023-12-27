@@ -1,6 +1,5 @@
 import fetchCategories from "../../../logic/categories/fetch";
-
-import dipslayBlogCategories from "./display";
+import updateCategories from "./update";
 
 export default function createBlogCategories(blogInfo) {
   const div = document.createElement("div");
@@ -15,40 +14,55 @@ export default function createBlogCategories(blogInfo) {
   label.appendChild(span);
 
   const container = document.createElement("div");
+  container.classList.add("select-container");
   div.appendChild(container);
 
-  const text = document.createElement("p");
-  text.textContent = "აირჩიეთ კატეგორია";
+  const selected = document.createElement("div");
+  selected.classList.add("selected-category", "hidden");
+  container.appendChild(selected);
 
-  // const select = document.createElement("select");
-  // select.setAttribute("id", "blog-categories-select");
-  // div.appendChild(select);
+  const select = document.createElement("select");
+  select.setAttribute("id", "blog-categories-select");
+  container.appendChild(select);
 
-  // const span2 = document.createElement("span");
-  // span2.textContent = "ss";
-  // select.appendChild(span2);
+  const placeholder = document.createElement("option");
+  placeholder.textContent = "აირჩიეთ კატეგორია";
+  placeholder.classList.add("placeholder-option");
+  placeholder.setAttribute("value", "");
+  placeholder.setAttribute("disabled", "");
+  placeholder.setAttribute("selected", "");
+  placeholder.setAttribute("hidden", "");
+  select.appendChild(placeholder);
 
-  // const placeholder = document.createElement("option");
-  // placeholder.textContent = "აირჩიეთ კატეგორია";
-  // placeholder.setAttribute("value", "");
-  // placeholder.setAttribute("disabled", "");
-  // placeholder.setAttribute("selected", "");
-  // placeholder.setAttribute("hidden", "");
+  fetchCategories("https://api.blog.redberryinternship.ge/api").then((data) => {
+    data.data.forEach((cat) => {
+      const option = document.createElement("option");
+      option.textContent = cat.title;
+      option.setAttribute("value", cat.id);
+      select.appendChild(option);
+    });
 
-  // select.appendChild(placeholder);
+    const options = document.querySelectorAll("option");
 
-  // fetchCategories("https://api.blog.redberryinternship.ge/api").then((data) => {
-  //   data.data.forEach((cat) => {
-  //     const option = document.createElement("option");
-  //     option.textContent = cat.title;
-  //     option.setAttribute("value", cat.id);
-  //     select.appendChild(option);
-  //   });
-  // });
+    if (blogInfo && blogInfo.categories) {
+      const categories = blogInfo.categories;
+      updateCategories(
+        select,
+        container,
+        selected,
+        placeholder,
+        options,
+        categories
+      );
+    }
+  });
 
-  // select.addEventListener("change", function () {
-  //   dipslayBlogCategories(select.value);
-  // });
+  select.addEventListener("change", function () {
+    const options = document.querySelectorAll("option");
+    updateCategories(select, container, selected, placeholder, options, [
+      +this.value,
+    ]);
+  });
 
   return div;
 }

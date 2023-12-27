@@ -19,7 +19,7 @@ export default function updateImageUploader(
     const fileType = blogInfo.image.type;
     const fileName = blogInfo.image.name;
     const file = base64StringToFile(base64String, fileType, fileName);
-    console.log(file);
+    // console.log(file);
     return;
   }
 

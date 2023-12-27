@@ -79,6 +79,7 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        overflow: hidden;
 
         label {
           display: flex;
@@ -90,7 +91,7 @@
 
         input,
         textarea,
-        select {
+        .select-container {
           padding: 15px 10px;
           font-family: inherit;
           border-radius: 12px;
@@ -118,10 +119,59 @@
           list-style-type: none;
           color: #85858d;
         }
+
+        .select-container {
+          display: grid;
+          grid-template-columns: auto;
+
+          .selected-category {
+            display: flex;
+            gap: 5px;
+            border-radius: 30px;
+            padding: 5px;
+
+            .category-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 8px 12px;
+              border-radius: 30px;
+              gap: 7px;
+
+              p {
+                text-align: center;
+              }
+
+              img {
+                cursor: pointer;
+              }
+            }
+          }
+
+          select {
+            background-color: #fcfcfd;
+            border: none;
+            outline: none;
+            width: 100%;
+            cursor: pointer;
+          }
+        }
       }
 
       .add-blog-btn {
-        align-self: start;
+        align-self: end;
+        font-family: "FiraGO";
+        font-size: 0.9em;
+        width: calc(50% - 15px);
+        line-height: 20px;
+        color: #f8fafc;
+        padding: 15px 10px;
+        background-color: #5d37f3;
+        border: none;
+        border-radius: 8px;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
