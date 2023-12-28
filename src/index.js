@@ -4,6 +4,8 @@ import createMain from "./components/dom/main/create";
 import createBlogAdder from "./components/dom/blogAdder/create";
 import fetchCategories from "./components/logic/categories/fetch";
 import createCategories from "./components/dom/main/categories/create";
+import fetchBlogs from "./components/logic/blogs/fetch";
+import createBlogs from "./components/dom/main/blogs/create";
 
 const body = document.querySelector("body");
 const url = "https://api.blog.redberryinternship.ge/api";
@@ -19,10 +21,16 @@ if (!status) localStorage.setItem("blog-adder-status", JSON.stringify(false));
 const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
 if (!blogInfo) localStorage.setItem("blog-info", JSON.stringify({}));
 
-body.appendChild(createHeader(login));
-body.appendChild(createMain(status));
-body.appendChild(createBlogAdder(status, blogInfo));
+body.appendChild(createHeader());
+body.appendChild(createMain());
+body.appendChild(createBlogAdder());
 
 fetchCategories(url).then((data) => {
   createCategories(data);
+
+  setTimeout(() => {
+    fetchBlogs(url, token).then((data) => {
+      createBlogs(data);
+    });
+  }, 1000);
 });

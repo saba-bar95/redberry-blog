@@ -11,9 +11,12 @@ export default function updateCategories(
   options,
   idArr
 ) {
-  selected.classList.remove("hidden");
-  select.value = "";
-  placeholder.textContent = "";
+  if (idArr.length >= 1) {
+    placeholder.textContent = "";
+    selected.classList.remove("hidden");
+    select.value = "";
+  }
+
   const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
   const url = "https://api.blog.redberryinternship.ge/api";
 
@@ -57,29 +60,27 @@ export default function updateCategories(
           parent.remove();
 
           let index = parent.classList[1].indexOf("-");
-          console.log(index);
           const catNum = +parent.classList[1].substring(index + 1);
+
+          let arrIndex = categoryArr.indexOf(catNum);
+          if (arrIndex !== -1) categoryArr.splice(arrIndex, 1);
+
+          if (categoryArr.length < 1) {
+            selectContainer.style.border = "1px solid #EA1919";
+            selected.classList.add("hidden");
+            placeholder.textContent = "აირჩიეთ კატეგორია";
+            selectContainer.style.gridTemplateColumns = "auto";
+          }
+
+          if (categoryArr.length <= 1) selected.style.overflow = "auto";
+
+          blogInfo.categories = categoryArr;
+          localStorage.setItem("blog-info", JSON.stringify(blogInfo));
 
           options.forEach((el) => {
             if (el.hasAttribute("disabled")) return;
-            if (+el.getAttribute("value") === catNum) {
+            if (+el.getAttribute("value") === catNum)
               el.removeAttribute("hidden");
-
-              let arrIndex = categoryArr.indexOf(catNum);
-              if (arrIndex !== -1) categoryArr.splice(arrIndex, 1);
-
-              if (categoryArr.length < 1) {
-                selectContainer.style.border = "1px solid #EA1919";
-                selected.classList.add("hidden");
-                placeholder.textContent = "აირჩიეთ კატეგორია";
-                selectContainer.style.gridTemplateColumns = "auto";
-              }
-
-              if (categoryArr.length <= 1) selected.style.overflow = "auto";
-
-              blogInfo.categories = categoryArr;
-              localStorage.setItem("blog-info", JSON.stringify(blogInfo));
-            }
           });
         });
       }

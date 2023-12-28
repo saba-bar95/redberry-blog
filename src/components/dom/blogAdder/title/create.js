@@ -3,8 +3,11 @@ import updateTitle from "./update";
 
 const validations = ["მინიმუმ 2 სიმბოლო"];
 let container;
+let input;
 
-export default function createTitle(blogInfo) {
+export default function createTitle() {
+  const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+
   const div = document.createElement("div");
   div.classList.add("container");
 
@@ -17,7 +20,7 @@ export default function createTitle(blogInfo) {
   span.textContent = "*";
   label.appendChild(span);
 
-  const input = document.createElement("input");
+  input = document.createElement("input");
   input.classList.add("title-input");
   input.setAttribute("id", "title-input");
   input.setAttribute("placeholder", "შეიყვანეთ სათაური");
@@ -50,6 +53,10 @@ export default function createTitle(blogInfo) {
     if (e.key === "Enter") e.preventDefault();
   });
 
+  input.addEventListener("focus", function () {
+    if (!this.value) this.style.border = "1px solid #5D37F3";
+  });
+
   input.addEventListener("input", function () {
     if (this.value.charAt(0) === " ") {
       alert("Input should not start with a space");
@@ -68,3 +75,5 @@ export default function createTitle(blogInfo) {
 
   return div;
 }
+
+export { input, container };

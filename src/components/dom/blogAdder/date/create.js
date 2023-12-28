@@ -1,6 +1,9 @@
 import validateDate from "../../../logic/blogAdder/validations/date/date";
 
-export default function createDate(blogInfo) {
+let input;
+export default function createDate() {
+  const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+
   const div = document.createElement("div");
   div.classList.add("container");
 
@@ -13,7 +16,7 @@ export default function createDate(blogInfo) {
   span.textContent = "*";
   label.appendChild(span);
 
-  const input = document.createElement("input");
+  input = document.createElement("input");
   input.setAttribute("type", "date");
   input.setAttribute("id", "date-input");
   div.appendChild(input);
@@ -23,12 +26,16 @@ export default function createDate(blogInfo) {
     validateDate(input);
   }
 
-  input.addEventListener("change", function () {
-    validateDate(input);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") e.preventDefault();
   });
 
   input.addEventListener("focus", function () {
-    if (!input.value) input.style.border = "1px solid #EA1919";
+    if (!this.value) this.style.border = "1px solid #5D37F3";
+  });
+
+  input.addEventListener("change", function () {
+    validateDate(input);
   });
 
   input.addEventListener("blur", function () {
@@ -37,3 +44,5 @@ export default function createDate(blogInfo) {
 
   return div;
 }
+
+export { input };

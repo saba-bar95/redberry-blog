@@ -1,7 +1,11 @@
 import fetchCategories from "../../../logic/categories/fetch";
 import updateCategories from "./update";
 
-export default function createBlogCategories(blogInfo) {
+let container;
+export default function createBlogCategories() {
+  const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+  const body = document.querySelector("body");
+
   const div = document.createElement("div");
   div.classList.add("container");
 
@@ -13,7 +17,7 @@ export default function createBlogCategories(blogInfo) {
   span.textContent = "*";
   label.appendChild(span);
 
-  const container = document.createElement("div");
+  container = document.createElement("div");
   container.classList.add("select-container");
   div.appendChild(container);
 
@@ -57,6 +61,10 @@ export default function createBlogCategories(blogInfo) {
     }
   });
 
+  select.addEventListener("keydown", function (e) {
+    e.preventDefault();
+  });
+
   select.addEventListener("change", function () {
     const options = document.querySelectorAll("option");
     updateCategories(select, container, selected, placeholder, options, [
@@ -64,5 +72,16 @@ export default function createBlogCategories(blogInfo) {
     ]);
   });
 
+  body.addEventListener("click", function (event) {
+    if (event.target.classList.contains("add-blog-btn")) return;
+    if (!event.target.closest(".select-container")) {
+      const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+      if (blogInfo.categories.length < 1)
+        container.style.border = "1px solid #e4e3eb";
+    }
+  });
+
   return div;
 }
+
+export { container };

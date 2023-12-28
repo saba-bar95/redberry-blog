@@ -3,8 +3,11 @@ import updateTitle from "../title/update";
 
 const validations = ["მინიმუმ 2 სიმბოლო"];
 let container;
+let textarea;
 
-export default function createDescription(blogInfo) {
+export default function createDescription() {
+  const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+
   const div = document.createElement("div");
   div.classList.add("container");
 
@@ -17,7 +20,7 @@ export default function createDescription(blogInfo) {
   span.textContent = "*";
   label.appendChild(span);
 
-  const textarea = document.createElement("textarea");
+  textarea = document.createElement("textarea");
   textarea.setAttribute("placeholder", "შეიყვანეთ აღწერა");
   textarea.setAttribute("rows", 6);
   textarea.setAttribute("spellcheck", "off");
@@ -53,6 +56,10 @@ export default function createDescription(blogInfo) {
     if (e.key === "Enter") e.preventDefault();
   });
 
+  textarea.addEventListener("focus", function () {
+    if (!this.value) this.style.border = "1px solid #5D37F3";
+  });
+
   textarea.addEventListener("input", function () {
     if (this.value.charAt(0) === " ") {
       alert("Input should not start with a space");
@@ -71,3 +78,5 @@ export default function createDescription(blogInfo) {
 
   return div;
 }
+
+export { textarea, container };

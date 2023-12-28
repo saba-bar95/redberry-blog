@@ -7,8 +7,11 @@ const validations = [
   "მხოლოდ ქართული სიმბოლოები",
 ];
 const validationArr = [];
+let input;
 
-export default function createAuthor(blogInfo) {
+export default function createAuthor() {
+  const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+
   const div = document.createElement("div");
   div.classList.add("container");
 
@@ -21,7 +24,7 @@ export default function createAuthor(blogInfo) {
   span.textContent = "*";
   label.appendChild(span);
 
-  const input = document.createElement("input");
+  input = document.createElement("input");
   input.classList.add("author-input");
   input.setAttribute("id", "author-input");
   input.setAttribute("placeholder", "შეიყვანეთ ავტორი");
@@ -55,6 +58,10 @@ export default function createAuthor(blogInfo) {
     if (e.key === "Enter") e.preventDefault();
   });
 
+  input.addEventListener("focus", function () {
+    if (!this.value) this.style.border = "1px solid #5D37F3";
+  });
+
   input.addEventListener("input", function () {
     if (this.value.charAt(0) === " ") {
       alert("Input should not start with a space");
@@ -75,3 +82,5 @@ export default function createAuthor(blogInfo) {
 
   return div;
 }
+
+export { input, validationArr };

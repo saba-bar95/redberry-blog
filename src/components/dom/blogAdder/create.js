@@ -7,8 +7,11 @@ import createDescription from "./description/create";
 import createTitle from "./title/create";
 import createImageUploader from "./image/create";
 import validateForm from "../../logic/blogAdder/validations/form/form";
+import createEmail from "./email/create";
 
-export default function createBlogAdder(status, blogInfo) {
+export default function createBlogAdder() {
+  const status = JSON.parse(localStorage.getItem("blog-adder-status"));
+
   const blogAdder = document.createElement("div");
   blogAdder.setAttribute("id", "blog-adder");
 
@@ -32,40 +35,38 @@ export default function createBlogAdder(status, blogInfo) {
   form.setAttribute("id", "blog-form");
   content.appendChild(form);
 
-  form.appendChild(createImageUploader(blogInfo));
+  form.appendChild(createImageUploader());
 
   const title = document.createElement("div");
   title.classList.add("author-title-container");
   form.appendChild(title);
-  title.appendChild(createAuthor(blogInfo));
-  title.appendChild(createTitle(blogInfo));
+  title.appendChild(createAuthor());
+  title.appendChild(createTitle());
 
-  form.appendChild(createDescription(blogInfo));
+  form.appendChild(createDescription());
 
   const dateCategory = document.createElement("div");
   dateCategory.classList.add("date-category-container");
   form.appendChild(dateCategory);
+  dateCategory.appendChild(createDate());
+  dateCategory.appendChild(createBlogCategories());
 
-  dateCategory.appendChild(createDate(blogInfo));
-  dateCategory.appendChild(createBlogCategories(blogInfo));
+  form.appendChild(createEmail());
 
   const addBlogBtn = document.createElement("button");
   addBlogBtn.textContent = "გამოქვეყნება";
   addBlogBtn.classList.add("add-blog-btn");
   form.appendChild(addBlogBtn);
 
+  backArrow.addEventListener("click", displayMainDiv);
+
   // form.addEventListener("input", function () {
   //   console.log("ss");
   // });
 
-  backArrow.addEventListener("click", displayMainDiv);
-
   addBlogBtn.addEventListener("click", function (e) {
     e.preventDefault();
-
-    const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
-
-    validateForm(blogInfo);
+    validateForm();
   });
   return blogAdder;
 }

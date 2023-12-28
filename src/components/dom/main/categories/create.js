@@ -1,5 +1,5 @@
 export default function createCategories(data) {
-  const content = document.querySelector(".main-content");
+  const content = document.querySelector("#main-div");
 
   const categories = document.createElement("div");
   categories.classList.add("categories-container");

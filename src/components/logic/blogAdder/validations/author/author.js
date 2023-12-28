@@ -20,14 +20,18 @@ export default function validateAuthor(input, arr) {
   updateAuthor(validateTwoWords(value), arr[1]);
   updateAuthor(validateGeorgianAlph(value), arr[2]);
 
+  blogInfo.author = value;
+  localStorage.setItem("blog-info", JSON.stringify(blogInfo));
+
   if (
     validateFourLetters(value) &&
     validateTwoWords(value) &&
     validateGeorgianAlph(value)
   ) {
     input.style.border = "1px solid #14D81C";
-  } else input.style.border = "1px solid #EA1919";
-
-  blogInfo.author = value;
-  localStorage.setItem("blog-info", JSON.stringify(blogInfo));
+    return true;
+  } else {
+    input.style.border = "1px solid #EA1919";
+    return false;
+  }
 }

@@ -2,7 +2,9 @@ import folderImg from "/src/assets/images/folder-add.png";
 import removeImgPng from "/src/assets/images/remove.png";
 import updateImageUploader from "./update";
 
-export default function createImageUploader(blogInfo) {
+export default function createImageUploader() {
+  const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+
   const label = document.createElement("label");
   label.setAttribute("for", "image-input");
   label.classList.add("img-uploader-container");

@@ -1,17 +1,15 @@
 import logoImg from "/src/assets/images/blog-logo.png";
 
-export default function createMain(status) {
+export default function createMain() {
+  const status = JSON.parse(localStorage.getItem("blog-adder-status"));
+
   const main = document.createElement("div");
   main.setAttribute("id", "main-div");
   if (status) main.classList.add("hidden");
 
-  const content = document.createElement("div");
-  content.classList.add("main-content");
-  main.appendChild(content);
-
   const info = document.createElement("div");
   info.classList.add("main-info");
-  content.appendChild(info);
+  main.appendChild(info);
 
   const text = document.createElement("h1");
   text.textContent = "ბლოგი";

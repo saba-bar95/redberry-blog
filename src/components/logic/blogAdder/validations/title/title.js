@@ -7,10 +7,14 @@ export default function validateTitle(input, div) {
 
   updateTitle(validateTwoLetters(value), div);
 
-  if (validateTwoLetters(value)) {
-    input.style.border = "1px solid #14D81C";
-  } else input.style.border = "1px solid #EA1919";
-
   blogInfo.title = value;
   localStorage.setItem("blog-info", JSON.stringify(blogInfo));
+
+  if (validateTwoLetters(value)) {
+    input.style.border = "1px solid #14D81C";
+    return true;
+  } else {
+    input.style.border = "1px solid #EA1919";
+    return false;
+  }
 }
