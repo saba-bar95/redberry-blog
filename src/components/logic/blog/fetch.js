@@ -17,6 +17,7 @@ export default async function fetchBlog(id) {
     const data = await response.json();
     return data;
   } catch (error) {
+    alert("Too many requests");
     console.log("There was a problem with the fetch operation: ", error);
   }
 }

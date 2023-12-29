@@ -19,9 +19,11 @@ import { input as dateInput } from "../../../../dom/blogAdder/date/create";
 import { container as categoriesContainer } from "../../../../dom/blogAdder/categories/create";
 import createSuccessModal from "/src/components/dom/blogAdder/success/create.js";
 import sendBlog from "../../../blogs/sendBlog";
+import validateEmail from "../email/email";
 
 export default function validateForm() {
   const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+  const emailInput = document.querySelector("#email-input");
 
   if (!validateAuthor(authorInput, authorValidationArr))
     authorInput.style.border = "1px solid #EA1919";
@@ -45,6 +47,9 @@ export default function validateForm() {
     blogInfo.categories &&
     blogInfo.categories.length > 0
   ) {
+    if (emailInput.value && !validateEmail(emailInput)) {
+      return;
+    }
     sendBlog();
     localStorage.setItem("blog-info", JSON.stringify({}));
     createSuccessModal();

@@ -15,6 +15,10 @@ export default function createBlogs(data) {
     blog.classList.add("blog-container", `blog-${info.id}`);
     container.appendChild(blog);
 
+    const comparisonDate = new Date(info.publish_date);
+    const today = new Date();
+    if (today < comparisonDate) blog.style.display = "none";
+
     const image = new Image();
     image.src = info.image;
     blog.appendChild(image);
@@ -67,7 +71,7 @@ export default function createBlogs(data) {
 
     expand.addEventListener("click", function () {
       fetchBlog(info.id).then((data) => {
-        createBlogContent(data);
+        createBlogContent(data, info.id);
       });
     });
   });
