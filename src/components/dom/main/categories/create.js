@@ -1,6 +1,6 @@
 export default function createCategories(data) {
+  const selected = JSON.parse(localStorage.getItem("selected"));
   const content = document.querySelector("#main-div");
-
   const categories = document.createElement("div");
   categories.classList.add("categories-container");
   content.appendChild(categories);
@@ -10,6 +10,7 @@ export default function createCategories(data) {
     category.classList.add("category", `category-${el.id}`);
     category.style.backgroundColor = el.background_color;
     categories.appendChild(category);
+    if (selected.includes(el.id)) category.classList.add("selected");
 
     const text = document.createElement("p");
     text.textContent = el.title;

@@ -1,6 +1,7 @@
 import expandImg from "/src/assets/images/expand.png";
 import fetchBlog from "../../../logic/blog/fetch";
 import createBlogContent from "../blog/create";
+import filterBlogs from "./filter/filter";
 
 export default function createBlogs(data) {
   const main = document.querySelector("#main-div");
@@ -70,6 +71,16 @@ export default function createBlogs(data) {
       });
     });
   });
+
+  const filters = document.querySelectorAll(".category");
+
+  filters.forEach((el) => {
+    el.addEventListener("click", function (e) {
+      filterBlogs(e.target);
+    });
+  });
+
+  filterBlogs(false);
 
   return container;
 }

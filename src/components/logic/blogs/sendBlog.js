@@ -4,6 +4,7 @@ export default function sendBlog() {
   const base64String = blogInfo.image.base64;
   const newBase64 = base64String.replace(/^data:image\/\w+;base64,/, "");
   const blob = base64StringToBlob(newBase64);
+
   formData.append("title", blogInfo.title);
   formData.append("description", blogInfo.description);
   formData.append("image", blob, "filename.jpg");

@@ -4,6 +4,10 @@
   gap: 70px;
   font-family: "FiraGO";
 
+  .selected {
+    border: 1px solid #000;
+  }
+
   .main-info {
     display: flex;
     justify-content: space-between;
@@ -102,6 +106,7 @@
             align-items: center;
             font-size: 12px;
             border-radius: 30px;
+            text-align: center;
           }
         }
 
