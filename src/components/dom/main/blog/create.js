@@ -3,7 +3,6 @@ import relatedBlogs from "./relatedBlogs/create";
 import backArrowImg from "/src/assets/images/back-arrow.png";
 
 export default function createBlogContent(data) {
-  console.log(data);
   const body = document.querySelector("body");
   const mainDiv = document.querySelector("#main-div");
   mainDiv.classList.add("hidden");
@@ -89,8 +88,6 @@ export default function createBlogContent(data) {
     "https://api.blog.redberryinternship.ge/api",
     "fc9a807608d006f9d7604bc78bf62b027a2247c0c232dc217a6e1d5476d5271a"
   ).then((data2) => {
-    console.log(data2);
-    console.log(data.categories);
     relatedBlogs(data, data2, lower);
   });
 
