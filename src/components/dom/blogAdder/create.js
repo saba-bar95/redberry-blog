@@ -1,13 +1,13 @@
 import backArrowImg from "/src/assets/images/back-arrow.png";
 import displayMainDiv from "/src/components/dom/main/display.js";
-import createAuthor from "./author/create";
-import createBlogCategories from "./categories/create";
-import createDate from "./date/create";
-import createDescription from "./description/create";
-import createTitle from "./title/create";
 import createImageUploader from "./image/create";
-import validateForm from "../../logic/blogAdder/validations/form/form";
+import createAuthor from "./author/create";
+import createTitle from "./title/create";
+import createDescription from "./description/create";
+import createDate from "./date/create";
+import createBlogCategories from "./categories/create";
 import createEmail from "./email/create";
+import validateForm from "../../logic/blogAdder/validations/form/form";
 
 export default function createBlogAdder() {
   const status = JSON.parse(localStorage.getItem("blog-adder-status"));
@@ -56,13 +56,9 @@ export default function createBlogAdder() {
   const addBlogBtn = document.createElement("button");
   addBlogBtn.textContent = "გამოქვეყნება";
   addBlogBtn.classList.add("add-blog-btn");
-  form.appendChild(addBlogBtn);
+  content.appendChild(addBlogBtn);
 
   backArrow.addEventListener("click", displayMainDiv);
-
-  // form.addEventListener("input", function () {
-  //   console.log("ss");
-  // });
 
   addBlogBtn.addEventListener("click", function (e) {
     e.preventDefault();

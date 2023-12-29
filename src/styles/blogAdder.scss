@@ -1,32 +1,30 @@
 #blog-adder {
   font-family: "FiraGO";
-  padding: 50px 70px 250px 70px;
+  padding: 40px 76px 110px 76px;
   border-top: 1px solid #e4e3eb;
   position: relative;
 
   .back-arrow {
     position: absolute;
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 
   .blog-adder-content {
-    // padding: 0px 575px;
-    padding: 0 50px;
+    width: 600px;
+    margin-left: 480px;
 
     h1 {
       font-size: 2.3em;
       color: #1a1a1f;
       line-height: 40px;
       font-weight: 700;
-      margin-bottom: 60px;
     }
 
     .blog-form {
       display: flex;
       flex-direction: column;
-      gap: 50px;
+      gap: 24px;
+      margin: 40px 0px;
 
       .img-uploader-container {
         display: flex;
@@ -37,12 +35,13 @@
         }
 
         .image-uploader {
-          background-color: #e5e7eb;
-          border: 1.5px dashed #85858d;
           border-radius: 12px;
+          border: 1px dashed #85858d;
+          background: #f4f3ff;
+          border: 1.5px dashed #85858d;
           display: flex;
           flex-direction: column;
-          padding: 80px 100px;
+          padding: 48px 165px;
           gap: 30px;
 
           img {
@@ -54,10 +53,18 @@
             justify-content: center;
             gap: 5px;
 
+            span,
+            p {
+              color: #1a1a1f;
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 20px;
+            }
+
             p {
               text-decoration: underline;
               cursor: pointer;
-              font-weight: 700;
+              font-weight: 600;
             }
 
             img {
@@ -84,15 +91,17 @@
         label {
           display: flex;
           gap: 5px;
-          font-size: 0.9em;
           color: #1a1a1f;
           font-weight: 600;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
         }
 
         input,
         textarea,
         .select-container {
-          padding: 15px 10px;
+          padding: 12px 16px;
           font-family: inherit;
           border-radius: 12px;
           outline: none;
@@ -118,6 +127,10 @@
         li {
           list-style-type: none;
           color: #85858d;
+          color: #85858d;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 20px;
         }
 
         .select-container {
@@ -162,23 +175,22 @@
         align-self: start;
         width: calc(50% - 15px);
       }
-
-      .add-blog-btn {
-        align-self: end;
-        font-family: "FiraGO";
-        font-size: 0.9em;
-        width: calc(50% - 15px);
-        line-height: 20px;
-        color: #f8fafc;
-        padding: 15px 10px;
-        background-color: #e4e3eb;
-        border: none;
-        border-radius: 8px;
-        transition-duration: 0.5s;
-        cursor: pointer;
-        &:hover {
-          background-color: #5d37f3;
-        }
+    }
+    .add-blog-btn {
+      float: right;
+      font-family: inherit;
+      font-size: 0.9em;
+      width: calc(50% - 15px);
+      line-height: 20px;
+      color: #f8fafc;
+      padding: 15px 10px;
+      background-color: #e4e3eb;
+      border: none;
+      border-radius: 8px;
+      transition-duration: 0.5s;
+      cursor: pointer;
+      &:hover {
+        background-color: #5d37f3;
       }
     }
   }

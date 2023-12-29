@@ -3,7 +3,6 @@ import validateAuthor from "../author/author";
 import validateTitle from "../title/title";
 import validateDescription from "../description/description";
 import validateDate from "../date/date";
-
 import {
   input as authorInput,
   validationArr as authorValidationArr,
@@ -18,7 +17,8 @@ import {
 } from "../../../../dom/blogAdder/description/create";
 import { input as dateInput } from "../../../../dom/blogAdder/date/create";
 import { container as categoriesContainer } from "../../../../dom/blogAdder/categories/create";
-import sendBlog from "../../../blogs/send";
+import createSuccessModal from "/src/components/dom/blogAdder/success/create.js";
+import sendBlog from "../../../blogs/sendBlog";
 
 export default function validateForm() {
   const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
@@ -30,7 +30,10 @@ export default function validateForm() {
   if (!validateDescription(descriptonTextarea, descriptionContainer))
     descriptonTextarea.style.border = "1px solid #EA1919";
   if (!validateDate(dateInput)) dateInput.style.border = "1px solid #EA1919";
-  if (blogInfo.categories.length < 1)
+  if (
+    (blogInfo.categories && blogInfo.categories.length < 1) ||
+    !blogInfo.categories
+  )
     categoriesContainer.style.border = "1px solid #EA1919";
 
   if (
@@ -39,7 +42,11 @@ export default function validateForm() {
     validateTitle(titleInput, titleContainer) &&
     validateDescription(descriptonTextarea, descriptionContainer) &&
     validateDate(dateInput) &&
+    blogInfo.categories &&
     blogInfo.categories.length > 0
-  )
+  ) {
     sendBlog();
+    localStorage.setItem("blog-info", JSON.stringify({}));
+    createSuccessModal();
+  }
 }

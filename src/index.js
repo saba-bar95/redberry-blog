@@ -10,7 +10,9 @@ import createBlogs from "./components/dom/main/blogs/create";
 const body = document.querySelector("body");
 const url = "https://api.blog.redberryinternship.ge/api";
 const token =
-  "fc9a807608d006f9d7604bc78bf62b027a2247c0c232dc217a6e1d5476d5271a";
+  "e73b2cdfdf3c029e1684fd536b3d9981f6d050358dce0c4a34cc98a854cd0af6";
+
+// fc9a807608d006f9d7604bc78bf62b027a2247c0c232dc217a6e1d5476d5271a;
 
 const login = JSON.parse(localStorage.getItem("login"));
 if (!login) localStorage.setItem("login", JSON.stringify(false));

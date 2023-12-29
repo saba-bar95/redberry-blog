@@ -2,11 +2,10 @@ import validateTwoLetters from "../title/twoLetters";
 import updateTitle from "../../../../dom/blogAdder/title/update";
 
 export default function validateDescription(input, div) {
-  const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
   const value = input.value;
-
   updateTitle(validateTwoLetters(value), div);
 
+  const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
   blogInfo.description = value;
   localStorage.setItem("blog-info", JSON.stringify(blogInfo));
 

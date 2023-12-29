@@ -1,7 +1,8 @@
 import expandImg from "/src/assets/images/expand.png";
+import fetchBlog from "../../../logic/blog/fetch";
+import createBlogContent from "../blog/create";
 
 export default function createBlogs(data) {
-  //   console.log(data);
   const main = document.querySelector("#main-div");
 
   const container = document.createElement("div");
@@ -10,7 +11,7 @@ export default function createBlogs(data) {
 
   data.data.forEach((info) => {
     const blog = document.createElement("div");
-    blog.classList.add("blog-container");
+    blog.classList.add("blog-container", `blog-${info.id}`);
     container.appendChild(blog);
 
     const image = new Image();
@@ -62,6 +63,12 @@ export default function createBlogs(data) {
     const img = new Image();
     img.src = expandImg;
     expand.appendChild(img);
+
+    expand.addEventListener("click", function () {
+      fetchBlog(info.id).then((data) => {
+        createBlogContent(data);
+      });
+    });
   });
 
   return container;

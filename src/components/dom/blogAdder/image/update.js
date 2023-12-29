@@ -14,12 +14,6 @@ export default function updateImageUploader(
   if (refreshPage && e.id === "image-input") {
     image();
     label.textContent = blogInfo.image.name;
-
-    const base64String = "your base64 string";
-    const fileType = blogInfo.image.type;
-    const fileName = blogInfo.image.name;
-    const file = base64StringToFile(base64String, fileType, fileName);
-    // console.log(file);
     return;
   }
 
@@ -37,61 +31,40 @@ export default function updateImageUploader(
     image();
     label.textContent = files.name;
 
-    const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+    async function handleFile() {
+      const base64 = await fileToBase64(files);
 
-    getBase64(files)
-      .then(function (base64) {
-        blogInfo.image = {};
-        blogInfo.image.base64 = base64;
-        blogInfo.image.name = files.name;
-        blogInfo.image.type = files.type;
-        localStorage.setItem("blog-info", JSON.stringify(blogInfo));
-      })
-      .catch(function (error) {
-        console.log("Failed to get base64 string: ", error);
+      const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
+      blogInfo.image = {};
+      blogInfo.image.base64 = base64;
+      blogInfo.image.name = files.name;
+      blogInfo.image.type = files.type;
+      localStorage.setItem("blog-info", JSON.stringify(blogInfo));
+    }
+
+    async function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const base64 = event.target.result;
+          resolve(base64);
+        };
+        reader.onerror = function (error) {
+          reject(error);
+        };
+        reader.readAsDataURL(file);
       });
+    }
 
+    handleFile();
     return;
   }
 
   if (e.classList.contains("remove-img")) {
     noImage();
-
     const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
     blogInfo.image = null;
     localStorage.setItem("blog-info", JSON.stringify(blogInfo));
-  }
-
-  function base64StringToFile(base64String, fileType, fileName) {
-    // Convert base64 string to byte array
-    const byteCharacters = atob(base64String);
-    const byteArrays = [];
-    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
-      const slice = byteCharacters.slice(offset, offset + 512);
-      const byteNumbers = new Array(slice.length);
-      for (let i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      byteArrays.push(byteArray);
-    }
-
-    // Convert byte array to Blob
-    const blob = new Blob(byteArrays, { type: fileType });
-
-    // Convert Blob to File
-    const file = new File([blob], fileName, { type: fileType });
-
-    return file;
-  }
-
-  function getBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
   }
 
   function image() {

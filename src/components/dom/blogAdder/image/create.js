@@ -73,6 +73,7 @@ export default function createImageUploader() {
   label.addEventListener("drop", function (e) {
     e.preventDefault();
     const files = e.dataTransfer.files;
+    if (!e.dataTransfer.files[0].type.match("image.*")) return;
 
     updateImageUploader(
       e.target,

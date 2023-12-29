@@ -76,7 +76,7 @@ export default function createBlogCategories() {
     if (event.target.classList.contains("add-blog-btn")) return;
     if (!event.target.closest(".select-container")) {
       const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
-      if (blogInfo.categories.length < 1)
+      if (blogInfo.categories && blogInfo.categories.length < 1)
         container.style.border = "1px solid #e4e3eb";
     }
   });

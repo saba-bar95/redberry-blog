@@ -20,7 +20,7 @@ export default function createEmail() {
   if (blogInfo && blogInfo.email) {
     input.value = blogInfo.email;
     if (validateEmail(input)) input.style.border = "1px solid #14D81C";
-    if (!validateEmail(input)) input.style.border = "1px solid #EA1919";
+    else input.style.border = "1px solid #EA1919";
   }
 
   input.addEventListener("keydown", function (e) {
@@ -33,8 +33,9 @@ export default function createEmail() {
 
   input.addEventListener("input", function () {
     if (validateEmail(this)) this.style.border = "1px solid #14D81C";
-    if (!validateEmail(this)) this.style.border = "1px solid #EA1919";
+    else this.style.border = "1px solid #EA1919";
 
+    const blogInfo = JSON.parse(localStorage.getItem("blog-info"));
     blogInfo.email = this.value;
     localStorage.setItem("blog-info", JSON.stringify(blogInfo));
   });

@@ -1,26 +1,30 @@
 #header-div {
   position: sticky;
   top: 0;
+  border-bottom: 1px solid #e4e3eb;
+  background: #fff;
+  font-family: "FiraGO";
 
   .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 100px;
+    padding: 25px 100px;
     background-color: #f8fafc;
 
     button {
-      font-family: "FiraGO";
-      font-size: 0.9em;
       line-height: 20px;
-      color: #f8fafc;
+      font-family: inherit;
       padding: 10px 20px;
       background-color: #5d37f3;
       border: none;
       border-radius: 8px;
-      &:hover {
-        cursor: pointer;
-      }
+      color: #fff;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+      cursor: pointer;
     }
   }
 }
